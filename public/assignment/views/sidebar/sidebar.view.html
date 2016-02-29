@@ -1,0 +1,9 @@
+<div class="col-sm-3 col-md-2 sidebar" ng-controller="SidebarController">
+    <ul class="nav nav-sidebar">
+        <li ng-class="{'active': $location.url() == '/home'}"><a href="#/home">Home</a></li>
+        <li ng-class="{'active': $location.url() == '/profile'}" ng-show="loggedIn()"><a href="#/profile">Profile</a>
+        </li>
+        <li ng-class="{'active': $location.url() == '/admin'}" ng-show="admin()"><a href="#/admin">Admin</a></li>
+        <li ng-class="{'active': $location.url() == '/forms'}" ng-show="loggedIn()"><a href="#/forms">Forms</a></li>
+    </ul>
+</div>
