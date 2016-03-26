@@ -11,8 +11,10 @@
 
         function login() {
             UserService.findUserByCredentials($scope.loginUsername, $scope.loginPassword, function (user) {
-                $rootScope.user = user;
-                $location.url('/profile');
+                if (user){
+                    $rootScope.user = user;
+                    $location.url('/profile');
+                }
             });
             console.log($rootScope.user);
         }
