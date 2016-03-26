@@ -17,7 +17,8 @@
                     password: $scope.registerPassword,
                     email: $scope.registerEmail
                 };
-                UserService.createUser(user, function (newUser) {
+                UserService.createUser(user)
+                    .then(function (newUser) {
                     $rootScope.user = newUser;
                     $location.url('/profile');
                 });

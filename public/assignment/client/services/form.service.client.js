@@ -1,12 +1,12 @@
 /**
  * Created by ying on 2/25/16.
  */
+"use strict";
 (function () {
-    "use strict";
     angular
         .module("FormBuilderApp")
         .factory("FormService", formService);
-    function formService() {
+    function formService($http, $q) {
         var forms = [
             {"_id": "000", "title": "Contacts", "userId": 123},
             {"_id": "010", "title": "ToDo", "userId": 123},
@@ -22,7 +22,10 @@
 
         return api;
 
-        function createFormForUser(userId, form, callback) {
+        function createFormForUser(userId, form) {
+            var deferred = $q.defer();
+            $http.post("api/assignment/user/form", newForm)
+                .
             var newForm = {
                 "_id": (new Date).getTime(),
                 "title": form.title,
