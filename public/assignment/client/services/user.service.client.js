@@ -19,8 +19,10 @@
 
         function findUserByCredentials(username, password) {
             var deferred = $q.defer();
+            console.log("heihei");
             $http.get("/api/assignment/user/username=" + username + "&password=" + password)
                 .success(function (user) {
+                    console.log("eee");
                     deferred.resolve(user);
                 });
             return deferred.promise;

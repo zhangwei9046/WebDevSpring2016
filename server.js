@@ -2,10 +2,15 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
+//var session = require('express-session');
+var cookieParser  = require('cookie-parser');
 
 app.use(bodyParser.json({limit: '50mb'}));// for parsing application/json
 app.use(bodyParser.urlencoded({limit: '50mb', extended: false})); // for parsing application/x-www-form-urlencoded
 app.use(multer());//for parsing multipart/form-data
+//app.use(session({
+//    secret: 'this is the secret' }));
+app.use(cookieParser());
 
 app.use(express.static(__dirname + '/public'));
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';

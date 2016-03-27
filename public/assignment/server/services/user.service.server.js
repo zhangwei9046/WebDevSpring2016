@@ -2,18 +2,19 @@
  * Created by ying on 3/15/16.
  */
 "use strict";
-module.exports = function (app, model, db) {
+module.exports = function (app, model) {
     app.get("/api/assignment/user/:id", findUserById);
     app.get("/api/assignment/user/username=:username", findUserByUsername);
     app.get("/api/assignment/user/username=:username&password=:password", findUserByCredentials);
-    app.get("api/assignment/user", findAllUsers);
-    app.post("api/assignment/user", createUser);
-    app.put("api/assignment/user/:id", updateUser);
-    app.delete("api/assignment/user/:id", deleteUser);
+    app.get("/api/assignment/user", findAllUsers);
+    app.post("/api/assignment/user", createUser);
+    app.put("/api/assignment/user/:id", updateUser);
+    app.delete("/api/assignment/user/:id", deleteUser);
 
     function findUserById(req, res) {
         var userId = req.param.id;
-        userModel.findUserById(userId)
+        model
+            .findUserById(userId)
             .then(function (user) {
                 res.json(user);
             })
@@ -21,7 +22,7 @@ module.exports = function (app, model, db) {
 
     function findUserByUsername(req, res) {
         var username = req.param.username;
-        userModel
+        model
             .findUserByUsername(username)
             .then(function (user) {
                 res.json(user);
@@ -29,13 +30,14 @@ module.exports = function (app, model, db) {
     }
 
     function findUserByCredentials(req, res) {
+        console.log("wwwwwwww");
         var username = req.param.username;
         var password = req.param.password;
         var credentials = {
             username: username,
             password: password
         }
-        userModel
+        model
             .findUserByCredentials(credentials)
             .then(function (user) {
                 res.json(user);
@@ -43,7 +45,7 @@ module.exports = function (app, model, db) {
     }
 
     function findAllUsers(req, res) {
-        userModel
+        model
             .findAllUsers()
             .then(function (users) {
                 res.json(users);
@@ -51,8 +53,9 @@ module.exports = function (app, model, db) {
     }
 
     function createUser(req, res) {
+        console.log(req.body);
         var newUser = req.body;
-        userModel
+        model
             .createUser(newUser)
             .then(function (users) {
                 res.json(users);
@@ -62,7 +65,7 @@ module.exports = function (app, model, db) {
     function updateUser(req, res) {
         var userId = req.param.id;
         var userObj = req.body;
-        userModel
+        model
             .updateUser(userObj)
             .then(function (user) {
                 res.json(user);
@@ -71,7 +74,7 @@ module.exports = function (app, model, db) {
 
     function deleteUser(req, res) {
         var userId = req.param.id;
-        userModel
+        model
             .deleteUser(userId)
             .then(function (users) {
                 res.json(users);

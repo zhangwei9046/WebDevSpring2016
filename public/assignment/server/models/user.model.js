@@ -2,8 +2,11 @@
  * Created by ying on 3/15/16.
  */
 "use strict";
+var q = require("q");
+
 module.exports = function (app) {
     var users = require('./user.mock.json');
+    console.log(users);
     var api = {
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
@@ -16,55 +19,67 @@ module.exports = function (app) {
     return api;
 
     function findUserById(userId) {
+        var deferred = q.defer();
         for (var i = 0; i < users.length; i++) {
-            if (users[i].id = userId) {
-                return users[i];
-            }
-        }
-        return null;
-    }
-
-    function findUserByUsername(username) {
-        for (var i = 0; i < users.length; i++) {
-            if (users[i].username = username) {
-                return users[i];
-            }
-        }
-        return null;
-    }
-
-    function findUserByCredentials(credentials) {
-        for (var i = 0; i < users.length; i++) {
-            if (users[i].username == username) {
-                if (users[i].password == password) {
-                    var user = users[i];
-                    return user;
-                }
-            }
-        }
-        return null;
-    }
-
-    function findAllUsers() {
-        return users;
-    }
-
-    function createUser(newUser) {
-        users.push(newUser);
-        return users;
-    }
-
-    function deleteUser(userId) {
-        for (var i = 0; i < users.length; i++) {
-            if (users[i]._id == userId) {
-                users.splice(i, 1);
+            if (users[i].id == userId) {
+                deferred.resolve(users[i]);
                 break;
             }
         }
-        return users;
+        return deferred.promise;
+    }
+
+    function findUserByUsername(username) {
+        var deferred = q.defer();
+        for (var i = 0; i < users.length; i++) {
+            if (users[i].username == username) {
+                deferred.resolve(users[i]);
+                break;
+            }
+        }
+        return deferred.promise;
+    }
+
+    function findUserByCredentials(credentials) {
+        var deferred = q.defer();
+        for (var i = 0; i < users.length; i++) {
+            if (users[i].username == username) {
+                if (users[i].password == password) {
+                    deferred.resolve(users[i]);
+                    break;
+                }
+            }
+        }
+        return deferred.promise;
+    }
+
+    function findAllUsers() {
+        var deferred = q.defer();
+        deferred.resolve(users);
+        return deferred.promise;
+    }
+
+    function createUser(newUser) {
+        var deferred = q.defer();
+        users.push(newUser);
+        deferred.resolve(users);
+        return deferred.promise;
+    }
+
+    function deleteUser(userId) {
+        var deferred = q.defer();
+        for (var i = 0; i < users.length; i++) {
+            if (users[i]._id == userId) {
+                users.splice(i, 1);
+                deferred.resolve(users);
+                break;
+            }
+        }
+        return deferred.promise;
     }
 
     function updateUser(userId, userObj) {
+        var deferred = q.defer();
         var i;
         for (i = 0; i < users.length; i++) {
             if (users[i]._id == userId) {
@@ -73,9 +88,10 @@ module.exports = function (app) {
                 users[i].firstName = user.firstName;
                 users[i].lastName = user.lastName;
                 users[i].email = user.email;
+                deferred.resolve(users);
                 break;
             }
         }
-        return users[i];
+        return deferred.promise;
     }
 };

@@ -1,8 +1,8 @@
 /**
  * Created by ying on 2/20/16.
  */
+"use strict";
 (function () {
-    "use strict";
     angular
         .module("FormBuilderApp")
         .controller("LoginController", loginController);
@@ -10,13 +10,14 @@
         $scope.login = login;
 
         function login() {
-            UserService.findUserByCredentials($scope.loginUsername, $scope.loginPassword)
+            UserService
+                .findUserByCredentials($scope.loginUsername, $scope.loginPassword)
                 .then(function (user) {
-                if (user){
-                    $rootScope.user = user;
-                    $location.url('/profile');
-                }
-            });
+                    if (user) {
+                        $rootScope.user = user;
+                        $location.url('/profile');
+                    }
+                });
             console.log($rootScope.user);
         }
     }
