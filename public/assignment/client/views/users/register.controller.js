@@ -5,6 +5,7 @@
     angular
         .module("FormBuilderApp")
         .controller("RegisterController", registerController);
+
     function registerController($scope, $rootScope, $location, UserService) {
         $scope.register = register;
 

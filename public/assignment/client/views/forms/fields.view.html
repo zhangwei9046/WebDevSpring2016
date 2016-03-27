@@ -1,250 +1,83 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
-
-    <title>Forms: Registration Form</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="../css/dashboard.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-<div class="container-fluid">
-    <div class="row">
-
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Forms: Registration Form</h1>
-            <ul class="nav nav-tabs">
-                <li role="presentation"><a href="forms.view.html">Forms</a></li>
-                <li role="presentation" class="active"><a href="fields.view.html">Fields</a></li>
-            </ul>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <form>
-                        <div class="form-group">
-                            <div class="col-xs-8">
-                                <label for="inputFirstName">First Name:</label>
-                                <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+<h1 class="page-header">Forms: {{model.form.title}}</h1>
+<ul class="nav nav-tabs">
+    <li ng-class="{'active': $location.url() == '/forms'}" role="presentation"><a href="#/forms">Forms</a></li>
+    <li ng-class="{'active': $location.url() == '/fields'}" role="presentation"><a href="#/fields">Fields</a></li>
+</ul>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form>
+            <div ng-repeat="curField in model.fields">
+                <div class="form-group">
+                    <label>{{curField.label}}</label>
+                    <div class="input-group">
+                        <div ng-switch="curField.fieldType">
+                            <div ng-switch-when="TEXT">
+                                <input class="form-control" type="text" placeholder="{{curField.placeholder}}">
                             </div>
-                            <div>
-                                <br/>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                                </button>
+                            <div ng-switch-when="TEXTAREA">
+                                <textarea class="form-control" placeholder="{{curField.placeholder}}"></textarea>
                             </div>
-                            <br/>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-8">
-                                <label for="inputLastName">Last Name:</label>
-                                <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+                            <div ng-switch-when="EMAIL">
+                                <input class="form-control" type="email" placeholder="{{curField.placeholder}}">
                             </div>
-                            <div>
-                                <br/>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                                </button>
+                            <div ng-switch-when="DATE">
+                                <input class="form-control" type="date">
                             </div>
-                            <br/>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-8">
-                                <label for="inputDate">Date of Birth:</label>
-                                <input type="date" class="form-control" id="inputDate" placeholder="Select Date">
-                            </div>
-                            <div>
-                                <br/>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                            <br/>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-8">
-                                <label for="dropdownMenu2">Gender:</label>
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        Male
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        <li><a href="#">Male</a></li>
-                                        <li><a href="#">Female</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div>
-                                <br/>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-8">
-                                <label>Roles:</label>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Admin
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Student
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> User
-                                    </label>
-                                </div>
-                            </div>
-                            <div>
-                                <br/>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                            <br/>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-8">
-                                <label>License Agreement: </label>
+                            <div ng-switch-when="RADIOS">
                                 <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                        No
-                                    </label>
+                                    <div ng-repeat="currOption in curField.options">
+                                        <label><input type="radio" name="{{curField.label}}"
+                                                      value="{{currOption.value}}">{{currOption.label}}</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <br/>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                                </button>
+                            <div ng-switch-when="CHECKBOXES">
+                                <div ng-repeat="currOption in curField.options">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="{{currOption.value}}">{{currOption.label}}
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
-                            <br/>
+                            <div ng-switch-when="OPTIONS">
+                                <select class="form-control">
+                                    <option ng-repeat="currOption in curField.options" value="{{currOption.value}}">
+                                        {{currOption.label}}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
-                    </form>
-                    <div>
-                        <br/>
-                        <div class="page-header"></div>
+                        <span class="input-group-btn">
+                             <button class="btn btn-warning" type="button"><span
+                                     class="glyphicon glyphicon-pencil"></span></button>
+                             <button class="btn btn-success" type="button"><span
+                                     class="glyphicon glyphicon-plus"></span></button>
+                             <button class="btn btn-danger" type="button" ng-click="model.removeField($index)"><span
+                                     class="glyphicon glyphicon-remove"></span></button>
+                             <button class="btn btn-primary" type="button"><span
+                                     class="glyphicon glyphicon-align-justify"></span></button>
+                        </span>
                     </div>
-                    <form>
-                        <div class="form-group">
-                            <div class="col-xs-8">
-                                <label for="dropdownMenu3">Add New Field:</label>
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        Single Line Text
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        <li><a href="#">Single Line Text</a></li>
-                                        <li><a href="#">Date</a></li>
-                                        <li><a href="#">Dropdown</a></li>
-                                        <li><a href="#">Checkboxes</a></li>
-                                        <li><a href="#">Radio buttons</a></li>
-                                        <li><a href="#">Paragraph Text Field</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <br/>
-                            <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                            </button>
-                            <br/>
-                        </div>
-                    </form>
-
                 </div>
-
             </div>
-        </div>
+            <div class="form-group">
+                <label for="addnewfield">Add New Field:</label>
+                <div class="input-group">
+                    <select class="form-control" id="addnewfield" ng-model="model.fieldType">
+                        <option value="Single Line Text">Single Line Text</option>
+                        <option value="Date">Date</option>
+                        <option value="Dropdown">Dropdown</option>
+                        <option value="Checkboxes">Checkboxes</option>
+                        <option value="Radio buttons">Radio buttons</option>
+                        <option value="Multi Line Text">Multi Line Text</option>
+                    </select>
+                  <span class="input-group-btn">
+                        <button class="btn btn-success" type="button" ng-click="model.addField(model.fieldType)"><span
+                                class="glyphicon glyphicon-plus"></span></button>
+                  </span>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-</body>
-</html>

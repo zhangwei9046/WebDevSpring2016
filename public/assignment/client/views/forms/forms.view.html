@@ -1,7 +1,7 @@
 <h1 class="page-header">Forms</h1>
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="forms.view.html">Forms</a></li>
-    <li role="presentation"><a href="fields.view.html">Fields</a></li>
+    <li ng-class="{'active': $location.url() == '/forms'}" role="presentation"><a href="#/forms">Forms</a></li>
+    <li ng-class="{'active': $location.url() == '/fields'}"role="presentation"><a href="#/field">Fields</a></li>
 </ul>
 <table class="table table-striped table-bordered table-hover table-responsive">
     <thead>

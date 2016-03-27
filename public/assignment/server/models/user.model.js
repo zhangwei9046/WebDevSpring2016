@@ -2,7 +2,7 @@
  * Created by ying on 3/15/16.
  */
 "use strict";
-module.exports = function (app, db) {
+module.exports = function (app) {
     var users = require('./user.mock.json');
     var api = {
         findUserById: findUserById,
@@ -51,6 +51,7 @@ module.exports = function (app, db) {
 
     function createUser(newUser) {
         users.push(newUser);
+        return users;
     }
 
     function deleteUser(userId) {
@@ -60,6 +61,7 @@ module.exports = function (app, db) {
                 break;
             }
         }
+        return users;
     }
 
     function updateUser(userId, userObj) {
@@ -74,5 +76,6 @@ module.exports = function (app, db) {
                 break;
             }
         }
+        return users[i];
     }
 };

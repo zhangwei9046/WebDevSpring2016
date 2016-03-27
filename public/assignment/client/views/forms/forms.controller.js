@@ -1,8 +1,8 @@
 /**
  * Created by ying on 2/20/16.
  */
+"use strict";
 (function () {
-    "use strict";
     angular
         .module("FormBuilderApp")
         .controller("FormController", formController);
@@ -12,23 +12,26 @@
         $scope.deleteForm = deleteForm;
         $scope.selectForm = selectForm;
 
-        FormService.findAllFormsForUser($rootScope.user._id, function (newForms) {
-            $scope.forms = newForms;
-            //console.log(newForms);
-        });
+        FormService.findAllFormsForUser($rootScope.user.id)
+            .then(function (newForms) {
+                $scope.forms = newForms;
+                //console.log(newForms);
+            });
 
         function addForm() {
             if ($scope.formName != undefined) {
                 var form = {
                     title: $scope.formName,
-                    userId: $rootScope.user._id
+                    userId: $rootScope.user.id
                 }
-                FormService.createFormForUser($rootScope.user._id, form, function (newForm) {
-                    $scope.formName = undefined;
-                })
-                FormService.findAllFormsForUser($rootScope.user._id, function (newForms) {
-                    $scope.forms = newForms;
-                })
+                FormService.createFormForUser($rootScope.user.id, form)
+                    .then(function (newForm) {
+                        $scope.formName = undefined;
+                    })
+                FormService.findAllFormsForUser($rootScope.user.id)
+                    .then(function (newForms) {
+                        $scope.forms = newForms;
+                    })
             }
         }
 
@@ -39,22 +42,26 @@
                 title: $scope.formName
             }
             if (selectedFormIndex != null) {
-                var id = $scope.forms[selectedFormIndex]._id;
-                FormService.updateFormById(id, newForm, function (form) {
-                    $scope.formName = undefined;
-                })
+                var id = $scope.forms[selectedFormIndex].id;
+                FormService.updateFormById(id, newForm)
+                    .then(function (form) {
+                        $scope.formName = undefined;
+                    })
             }
-            FormService.findAllFormsForUser($rootScope.user._id, function (newForms) {
-                $scope.forms = newForms;
-            })
+            FormService.findAllFormsForUser($rootScope.user.id)
+                .then(function (newForms) {
+                    $scope.forms = newForms;
+                })
         }
 
         function deleteForm($index) {
-            FormService.deleteFormById($scope.forms[$index]._id, function (forms) {
-            });
-            FormService.findAllFormsForUser($rootScope.user._id, function (newForms) {
-                $scope.forms = newForms;
-            })
+            FormService.deleteFormById($scope.forms[$index].id)
+                .then(function (forms) {
+                });
+            FormService.findAllFormsForUser($rootScope.user.id)
+                .then(function (newForms) {
+                    $scope.forms = newForms;
+                })
         }
 
         function selectForm($index) {

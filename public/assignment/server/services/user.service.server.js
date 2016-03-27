@@ -13,7 +13,7 @@ module.exports = function (app, model, db) {
 
     function findUserById(req, res) {
         var userId = req.param.id;
-        model.findUserById(userId)
+        userModel.findUserById(userId)
             .then(function (user) {
                 res.json(user);
             })
@@ -21,7 +21,7 @@ module.exports = function (app, model, db) {
 
     function findUserByUsername(req, res) {
         var username = req.param.username;
-        model
+        userModel
             .findUserByUsername(username)
             .then(function (user) {
                 res.json(user);
@@ -35,7 +35,7 @@ module.exports = function (app, model, db) {
             username: username,
             password: password
         }
-        model
+        userModel
             .findUserByCredentials(credentials)
             .then(function (user) {
                 res.json(user);
@@ -43,7 +43,7 @@ module.exports = function (app, model, db) {
     }
 
     function findAllUsers(req, res) {
-        model
+        userModel
             .findAllUsers()
             .then(function (users) {
                 res.json(users);
@@ -52,7 +52,7 @@ module.exports = function (app, model, db) {
 
     function createUser(req, res) {
         var newUser = req.body;
-        model
+        userModel
             .createUser(newUser)
             .then(function (users) {
                 res.json(users);
@@ -62,7 +62,7 @@ module.exports = function (app, model, db) {
     function updateUser(req, res) {
         var userId = req.param.id;
         var userObj = req.body;
-        model
+        userModel
             .updateUser(userObj)
             .then(function (user) {
                 res.json(user);
@@ -71,7 +71,7 @@ module.exports = function (app, model, db) {
 
     function deleteUser(req, res) {
         var userId = req.param.id;
-        model
+        userModel
             .deleteUser(userId)
             .then(function (users) {
                 res.json(users);
