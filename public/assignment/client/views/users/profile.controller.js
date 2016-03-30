@@ -30,7 +30,6 @@
             UserService.updateUser(userId, userObj)
                 .then(function (user) {
                     $rootScope.user = user;
-                    alert("Update Successfully!");
                 })
 
         }

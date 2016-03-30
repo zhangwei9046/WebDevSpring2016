@@ -96,8 +96,8 @@ module.exports = function (app) {
         var i;
         for (i = 0; i < users.length; i++) {
             if (users[i].id == userId) {
+                userObj.roles = users[i].roles;
                 users[i] = userObj;
-
                 //users[i].username = user.username;
                 //users[i].password = user.password;
                 //users[i].firstName = user.firstName;
