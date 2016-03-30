@@ -1,32 +1,38 @@
 /**
  * Created by ying on 2/20/16.
  */
+"use strict";
 (function () {
     angular
         .module("FormBuilderApp")
         .controller("ProfileController", profileController);
-    function profileController($scope, $rootScope, $location, UserService) {
-        $scope.update = update;
-        $scope.user = $rootScope.user;
+    function profileController($rootScope, $location, UserService) {
+        var model = this;
+        model.username = $rootScope.user.username;
+        model.password = $rootScope.user.password;
+        model.email = $rootScope.user.email;
+        model.firstname = $rootScope.user.firstName;
+        model.lastname = $rootScope.user.lastName;
 
-        $scope.profileUsername = $rootScope.user.username;
-        $scope.profilePassword = $rootScope.user.password;
-        $scope.profileFirstname = $rootScope.user.firstName;
-        $scope.profileLastname = $rootScope.user.lastName;
-        $scope.profileEmail = $rootScope.user.email;
+        model.update = update;
 
         function update() {
-            var user = {
-                username: $scope.profileUsername,
-                password: $scope.profilePassword,
-                firstName: $scope.profileFirstname,
-                lastName: $scope.profileLastname,
-                email: $scope.profileEmail
-            }
-            UserService.updateUser($rootScope.user._id, user, function (user) {
-                $rootScope.user = user;
-            })
-            //console.log($rootScope.user)
+            var userId = $rootScope.user.id;
+            var userObj = {
+                id: $rootScope.user.id,
+                username: model.username,
+                password: model.password,
+                firstName: model.firstname,
+                lastName: model.lastname,
+                email: model.email
+            };
+
+            UserService.updateUser(userId, userObj)
+                .then(function (user) {
+                    $rootScope.user = user;
+                    alert("Update Successfully!");
+                })
+
         }
     }
 })();

@@ -1,8 +1,6 @@
-/**
- * Created by ying on 2/21/16.
- */
+/*Created by ying on 2/21/16.*/
+"use strict";
 (function () {
-    "use strict";
     angular
         .module("FormBuilderApp")
         .controller("MainController", mainController);

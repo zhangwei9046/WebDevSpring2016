@@ -1,43 +1,57 @@
 /**
  * Created by ying on 3/15/16.
  */
+"use strict";
 var q = require("q");
-
+var uuid = require("node-uuid");
 module.exports = function (app) {
     var forms = require('./form.mock.json');
 
     var api = {
+        //form api
         findFormById: findFormById,
-        findFormByTitle: findFormByTitle,
+        //findFormByTitle: findFormByTitle,
         findAllForms: findAllForms,
         findAllFormsForUser: findAllFormsForUser,
         createForm: createForm,
         updateForm: updateForm,
-        deleteForm: deleteForm
+        deleteForm: deleteForm,
+
+        //field api
+        findAllFieldsForForm: findAllFieldsForForm,
+        findFieldByFieldIdForForm: findFieldByFieldIdForForm,
+        createFieldForForm: createFieldForForm,
+        updateFieldForForm: updateFieldForForm,
+        deleteFieldForForm: deleteFieldForForm
     };
     return api;
 
+    //form
     function findFormById(formId) {
         var deferred = q.defer();
-        for (var i = 0; i < forms.length; i++) {
+        var i;
+        for (i = 0; i < forms.length; i++) {
             if (forms[i].id == formId) {
                 deferred.resolve(forms[i]);
-                return form[i];
+                break;
             }
+        }
+        if (i == forms.length) {
+            deferred.resolve();
         }
         return deferred.promise;
     }
 
-    function findFormByTitle(title) {
-        var deferred = q.defer();
-        for (var i = 0; i < forms.length; i++) {
-            if (forms[i].title == title) {
-                deferred.resolve(forms[i]);
-                return form[i];
-            }
-        }
-        return deferred.promise;
-    }
+    //function findFormByTitle(title) {
+    //    var deferred = q.defer();
+    //    for (var i = 0; i < forms.length; i++) {
+    //        if (forms[i].title == title) {
+    //            deferred.resolve(forms[i]);
+    //            return form[i];
+    //        }
+    //    }
+    //    return deferred.promise;
+    //}
 
     function findAllForms() {
         var deferred = q.defer();
@@ -47,11 +61,10 @@ module.exports = function (app) {
 
     function findAllFormsForUser(userId) {
         var deferred = q.defer();
-        var newForms;
+        var newForms = [];
         for (var i = 0; i < forms.length; i++) {
             if (forms[i].userId == userId) {
                 newForms.push(forms[i]);
-
             }
         }
         deferred.resolve(newForms);
@@ -60,6 +73,8 @@ module.exports = function (app) {
 
     function createForm(newForm) {
         var deferred = q.defer();
+        newForm.id = uuid.v1();
+        newForm.fields = [];
         forms.push(newForm);
         deferred.resolve(forms);
         return deferred.promise;
@@ -71,8 +86,8 @@ module.exports = function (app) {
         for (i = 0; i < forms.length; i++) {
             if (forms[i].id == formId) {
                 forms[i].title = formObj.title;
-                forms[i].userId = formObj.userId;
-                forms[i].fields = formObj.fields;
+                //forms[i].userId = formObj.userId;
+                //forms[i].fields = formObj.fields;
                 deferred.resolve(forms[i]);
                 break;
             }
@@ -81,6 +96,7 @@ module.exports = function (app) {
     }
 
     function deleteForm(formId) {
+        console.log(formId);
         var deferred = q.defer();
         for (var i = 0; i < forms.length; i++) {
             if (forms[i].id == formId) {
@@ -90,4 +106,86 @@ module.exports = function (app) {
         }
         return deferred.promise;
     }
-}
+
+    //field
+    function findAllFieldsForForm(formId) {
+        var deferred = q.defer();
+        var i;
+        for (i = 0; i < forms.length; i++) {
+            if (forms[i].id == formId) {
+                deferred.resolve(forms[i].fields);
+                break;
+            }
+        }
+        if (i == forms.length) {
+            deferred.resolve(null);
+        }
+        return deferred.promise;
+    }
+
+    function findFieldByFieldIdForForm(fieldId, formId) {
+        var deferred = q.defer();
+        var i, j;
+        for (i = 0; i < forms.length; i++) {
+            if (forms[i].id = formId) {
+                for (j = 0; j < forms.length; j++) {
+                    if (forms[i].fields[j].id = fieldId) {
+                        deferred.resolve(forms[i].fields[j]);
+                    }
+                }
+                if (j == forms[i].length) {
+                    deferred.resolve(null);
+                }
+            }
+        }
+        if (i == forms.length) {
+            deferred.resolve(null);
+        }
+        return deferred.promise;
+    }
+
+    function createFieldForForm(formId, fieldObj) {
+        console.log(formId);
+        console.log(fieldObj);
+        var deferred = q.defer();
+        fieldObj.id = uuid.v1();
+        for (var i = 0; i < forms.length; i++) {
+            if (forms[i].id == formId) {
+                console.log(forms[i]);
+                forms[i].fields.push(fieldObj);
+                deferred.resolve(forms[i].fields);
+            }
+        }
+        return deferred.promise;
+    }
+
+    function updateFieldForForm(formId, fieldId, fieldObj) {
+        var deferred = q.defer();
+        for (var i = 0; i < forms.length; i++) {
+            if (forms[i].id == formId) {
+                for (var j = 0; j < forms[i].fields.length; j++) {
+                    if (forms[i].fields[j].id == fieldId) {
+                        forms[i].fields[j].label = fieldObj.label;
+                        forms[i].fields[j].placeholder = fieldObj.placeholder;
+                        forms[i].fields[j].options = fieldObj.options;
+                        //console.log(forms[i].fields);
+                        deferred.resolve(forms[i].fields);
+                    }
+                }
+            }
+        }
+        return deferred.promise;
+    }
+
+    //fieldId is the index of the field, not Id
+    function deleteFieldForForm(formId, fieldId) {
+        var deferred = q.defer();
+        for (var i = 0; i < forms.length; i++) {
+            if (forms[i].id == formId) {
+                forms[i].fields.splice(fieldId, 1);
+                deferred.resolve(forms[i].fields);
+            }
+        }
+        return deferred.promise;
+    }
+};

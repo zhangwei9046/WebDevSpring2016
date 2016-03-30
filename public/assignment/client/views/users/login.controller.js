@@ -6,19 +6,23 @@
     angular
         .module("FormBuilderApp")
         .controller("LoginController", loginController);
-    function loginController($scope, $rootScope, $location, UserService) {
-        $scope.login = login;
+    function loginController($rootScope, $location, UserService) {
+        var model = this;
+        model.login = login;
 
         function login() {
+            var username = model.username;
+            var password = model.password;
+            console.log(username);
             UserService
-                .findUserByCredentials($scope.loginUsername, $scope.loginPassword)
+                .findUserByCredentials(username, password)
                 .then(function (user) {
-                    if (user) {
+                    if (user != null) {
                         $rootScope.user = user;
                         $location.url('/profile');
                     }
                 });
-            console.log($rootScope.user);
+
         }
     }
 })();

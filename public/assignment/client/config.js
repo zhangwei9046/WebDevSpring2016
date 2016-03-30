@@ -1,8 +1,8 @@
 /**
  * Created by ying on 2/21/16.
  */
+"use strict";
 (function () {
-    "use strict";
     angular
         .module("FormBuilderApp")
         .config(configuration);
@@ -14,30 +14,39 @@
             })
             .when("/register", {
                 templateUrl: "views/users/register.view.html",
-                controller: "RegisterController"
+                controller: "RegisterController",
+                controllerAs: "model"
             })
             .when("/login", {
                 templateUrl: "views/users/login.view.html",
-                controller: "LoginController"
+                controller: "LoginController",
+                controllerAs: "model"
             })
             .when("/profile", {
                 templateUrl: "views/users/profile.view.html",
-                controller: "ProfileController"
+                controller: "ProfileController",
+                controllerAs: "model"
             })
             .when("/admin", {
-                templateUrl: "views/admin/admin.view.html"
+                templateUrl: "views/admin/admin.view.html",
+                controller: "AdminController",
+                controllerAs: "model"
             })
             .when("/forms", {
                 templateUrl: "views/forms/forms.view.html",
-                controller: "FormController"
+                controller: "FormController",
+                controllerAs: "model"
             })
             .when("/fields", {
                 templateUrl: "views/forms/fields.view.html",
-                controller: "FieldController"
+                controller: "FieldController",
+                controllerAs: "model"
             })
-            //.when("/form/:formId/fields", {
-            //    template
-            //})
+            .when("/form/:formId/fields", {
+                templateUrl: "views/forms/fields.view.html",
+                controller: "FieldController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/home"
             })

@@ -1,9 +1,10 @@
 /**
  * Created by ying on 3/15/16.
  */
-module.exports = function (app, model, db) {
+"use strict";
+module.exports = function (app, model) {
     app.get("/api/assignment/form/:formId", findFormById);
-    //app.get("api/assignment/form/:title", findFormByTitle);
+    //app.get("/api/assignment/form/:title", findFormByTitle);
     app.get("/api/assignment/form", findAllForms);
     app.get("/api/assignment/user/:userId/form", findAllFormsForUser);
     app.post("/api/assignment/user/form", createForm);
@@ -11,7 +12,7 @@ module.exports = function (app, model, db) {
     app.delete("/api/assignment/form/:formId", deleteForm);
 
     function findFormById(req, res) {
-        var formId = req.param.formId;
+        var formId = req.params.formId;
         model.findFormById(formId)
             .then(function (form) {
                 res.json(form);
@@ -32,7 +33,7 @@ module.exports = function (app, model, db) {
     }
 
     function findAllFormsForUser(req, res) {
-        var userId = req.param.userId;
+        var userId = req.params.userId;
         model
             .findAllFormsForUser(userId)
             .then(function (forms) {
@@ -50,19 +51,22 @@ module.exports = function (app, model, db) {
     }
 
     function updateForm(req, res) {
-        var formId = req.param.formId;
+        var formId = req.params.formId;
         var formObj = req.body;
+        console.log(formId);
+        console.log(formObj);
         model
             .updateForm(formId, formObj)
             .then(function (form) {
+                console.log(form);
                 res.json(form);
             })
     }
 
     function deleteForm(req, res) {
-        var formId = req.param.formId;
+        var formId = req.params.formId;
         model
-            .delefeForm(formId)
+            .deleteForm(formId)
             .then(function (forms) {
                 res.json(forms);
             })

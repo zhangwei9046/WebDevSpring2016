@@ -4,7 +4,8 @@
     "firstName": "Alice",
     "lastName": "Wonderland",
     "username": "alice",
-    "password": "alice"
+    "password": "alice",
+    "roles": ["admin"]
   },
   {
     "id": 234,

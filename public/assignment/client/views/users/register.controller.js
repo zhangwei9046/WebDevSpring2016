@@ -1,28 +1,31 @@
-/**
- * Created by ying on 2/20/16.
- */
+/* Created by ying on 2/20/16. ...*/
+"use strict";
 (function () {
     angular
         .module("FormBuilderApp")
         .controller("RegisterController", registerController);
 
-    function registerController($scope, $rootScope, $location, UserService) {
-        $scope.register = register;
+    function registerController($rootScope, $location, UserService) {
+        var model = this;
+        model.register = register;
 
         function register() {
-            if ($scope.registerUsername != undefined && $scope.registerPassword != undefined &&
-                $scope.registerVerifyPassword != undefined && $scope.registerPassword == $scope.registerVerifyPassword &&
-                $scope.registerEmail != undefined) {
+            if (!model.username || !model.password || !model.verifypassword || !model.email) {
+                alert("Please fill the fields");
+            } else if (model.password != model.verifypassword) {
+                alert("Password not match");
+            } else {
                 var user = {
-                    username: $scope.registerUsername,
-                    password: $scope.registerPassword,
-                    email: $scope.registerEmail
+                    username: model.username,
+                    password: model.password,
+                    email: model.email
                 };
                 UserService.createUser(user)
-                    .then(function (newUser) {
-                    $rootScope.user = newUser;
-                    $location.url('/profile');
-                });
+                    .then(function (user) {
+                        console.log(user);
+                        $rootScope.user = user;
+                        $location.url('/profile');
+                    });
             }
         }
     }
