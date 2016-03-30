@@ -17,15 +17,21 @@
         model.cloneField = cloneField;
         model.removeField = removeField;
 
+        FormService.findFormById(formId)
+            .then(function (response) {
+                model.form = response;
+            })
+
         initFields();
 
         function initFields() {
-            if ($rootScope.user)
+            if ($rootScope.user) {
                 FieldService.getFieldsForForm(formId)
                     .then(function (response) {
                         model.fields = response;
-                        //console.log(response);
+                        //console.log(model);
                     });
+            }
         }
 
         function editField(curField) {
