@@ -4,8 +4,9 @@
 "use strict";
 var q = require("q");
 var uuid = require("node-uuid");
-module.exports = function (app) {
-    var forms = require('./form.mock.json');
+module.exports = function (mongoose, app) {
+    var FormSchema = require("./form.schema.server.js")(mongoose);
+    var FormModel = mongoose.model("FormModel", FormSchema);
 
     var api = {
         //form api
@@ -29,16 +30,13 @@ module.exports = function (app) {
     //form
     function findFormById(formId) {
         var deferred = q.defer();
-        var i;
-        for (i = 0; i < forms.length; i++) {
-            if (forms[i].id == formId) {
-                deferred.resolve(forms[i]);
-                break;
+        FormModel.findById({id: formId}, function (err, form) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(form);
             }
-        }
-        if (i == forms.length) {
-            deferred.resolve();
-        }
+        })
         return deferred.promise;
     }
 
@@ -55,19 +53,25 @@ module.exports = function (app) {
 
     function findAllForms() {
         var deferred = q.defer();
-        deferred.resolve(forms);
+        FormModel.find(function (err, forms) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(forms);
+            }
+        })
         return deferred.promise;
     }
 
     function findAllFormsForUser(userId) {
         var deferred = q.defer();
-        var newForms = [];
-        for (var i = 0; i < forms.length; i++) {
-            if (forms[i].userId == userId) {
-                newForms.push(forms[i]);
+        FormModel.find({id: formId}, function (err, forms) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(forms);
             }
-        }
-        deferred.resolve(newForms);
+        })
         return deferred.promise;
     }
 
@@ -75,8 +79,13 @@ module.exports = function (app) {
         var deferred = q.defer();
         newForm.id = uuid.v1();
         newForm.fields = [];
-        forms.push(newForm);
-        deferred.resolve(forms);
+        FormModel.create(newForm, function (err, form) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(form);
+            }
+        });
         return deferred.promise;
     }
 

@@ -26,6 +26,7 @@
     "body-parser": "^1.15.0",
     "cookie-parser": "^1.4.0",
     "express": "^3.4.8",
+    "mongoose": "^4.4.10",
     "multer": "^1.1.0",
     "node-uuid": "^1.4.7",
     "q": "^1.4.1"
