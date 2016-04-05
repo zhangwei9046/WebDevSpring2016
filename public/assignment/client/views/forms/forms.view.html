@@ -24,7 +24,7 @@
         </td>
     </tr>
     <tr ng-repeat="form in model.forms">
-        <td><a href="#/form/{{form.id}}/fields">{{form.title}}</a></td>
+        <td><a href="#/form/{{form._id}}/fields">{{form.title}}</a></td>
         <td>
             <button type="button" class="btn btn-danger" ng-click="model.deleteForm($index)">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

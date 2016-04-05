@@ -52,7 +52,6 @@ module.exports = function (app, model) {
     }
 
     function createUser(req, res) {
-        console.log(req.body);
         var newUser = req.body;
         model
             .createUser(newUser)
@@ -64,7 +63,7 @@ module.exports = function (app, model) {
     function updateUser(req, res) {
         var userId = req.params.id;
         var userObj = req.body;
-
+        console.log(userId);
         model
             .updateUser(userId, userObj)
             .then(function (user) {

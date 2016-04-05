@@ -16,7 +16,7 @@
         loadAllForms();
 
         function loadAllForms() {
-            FormService.findAllFormsForUser(model.user.id)
+            FormService.findAllFormsForUser(model.user._id)
                 .then(function (forms) {
                     model.forms = forms;
                     //console.log(model.forms);
@@ -27,7 +27,7 @@
             if (model.formname != null) {
                 var formObj = {
                     title: model.formname,
-                    userId: model.user.id
+                    userId: model.user._id
                 }
                 FormService.createFormForUser(formObj)
                     .then(function (forms) {
@@ -44,7 +44,7 @@
                 title: model.formname
             }
             if (selectedFormIndex != null) {
-                var id = model.forms[selectedFormIndex].id;
+                var id = model.forms[selectedFormIndex]._id;
                 FormService.updateFormById(id, newForm)
                     .then(function (form) {
                         loadAllForms();
@@ -54,7 +54,7 @@
         }
 
         function deleteForm($index) {
-            FormService.deleteFormById(model.forms[$index].id)
+            FormService.deleteFormById(model.forms[$index]._id)
                 .then(function (forms) {
                     loadAllForms();
                 });

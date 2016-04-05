@@ -17,9 +17,9 @@
         model.update = update;
 
         function update() {
-            var userId = $rootScope.user.id;
+            var userId = $rootScope.user._id;
             var userObj = {
-                id: $rootScope.user.id,
+                _id: $rootScope.user._id,
                 username: model.username,
                 password: model.password,
                 firstName: model.firstname,

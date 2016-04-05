@@ -28,14 +28,14 @@
             if ($rootScope.user) {
                 FieldService.getFieldsForForm(formId)
                     .then(function (response) {
+                        console.log(response);
                         model.fields = response;
-                        //console.log(model);
                     });
             }
         }
 
         function editField(curField) {
-            console.log(curField);
+            //console.log(curField);
             model.field = curField;
             var options = [];
             if (model.field.type == "OPTIONS" || model.field.type == "CHECKBOXES" || model.field.type == "RADIOS") {
@@ -66,7 +66,7 @@
                 }
                 fieldObj.options = optionsArray;
             }
-            FieldService.updateFieldForForm(formId, fieldObj.id, fieldObj)
+            FieldService.updateFieldForForm(formId, fieldObj._id, fieldObj)
                 .then(function () {
                     initFields();
                 })
@@ -80,7 +80,7 @@
                 options: model.fields[fieldIndex].options
             }
             FieldService.createNewFieldForForm(formId, newField)
-                .then(function () {
+                .then(function (response) {
                     initFields();
                 });
         }

@@ -13,7 +13,6 @@
         function login() {
             var username = model.username;
             var password = model.password;
-            console.log(username);
             UserService
                 .findUserByCredentials(username, password)
                 .then(function (user) {

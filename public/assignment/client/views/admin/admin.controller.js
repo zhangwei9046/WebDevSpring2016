@@ -22,6 +22,11 @@
         }
 
         function addUser() {
+            var foundUsername = UserService.findUserByUsername(model.username).username;
+            if (foundUsername == model.username) {
+                alert("User existed");
+                return;
+            }
             if (model.username && model.password && model.rolesText) {
                 var roles = model.rolesText.split(",");
                 var newUser = {
@@ -32,6 +37,9 @@
                 UserService.createUser(newUser)
                     .then(function (response) {
                         loadAllUsers();
+                        model.username = "";
+                        model.password = "";
+                        model.rolesText = "";
                     });
             }
 
@@ -43,21 +51,21 @@
                 password: model.password,
                 roles: model.rolesText.split(",")
             }
-            UserService.updateUser(model.user.id, newUser)
+            UserService.updateUser(model.user._id, newUser)
                 .then(function (response) {
                     loadAllUsers();
                 })
         }
 
         function deleteUser(user) {
-            UserService.deleteUserById(user.id)
+            UserService.deleteUserById(user._id)
                 .then(function (response) {
                     loadAllUsers();
                 });
         }
 
         function editUser(user) {
-            console.log(user);
+            //console.log(user);
             model.user = user;
             model.username = user.username;
             model.password = user.password;

@@ -3,7 +3,6 @@
  */
 "use strict";
 module.exports = function (mongoose) {
-    console.log(mongoose);
     var FieldSchema = mongoose.Schema({
         "label": String,
         "type": {

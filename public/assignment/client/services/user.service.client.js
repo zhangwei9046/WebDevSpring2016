@@ -7,6 +7,7 @@
 
     function userService($http, $q) {
         var api = {
+            findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
             findAllUsers: findAllUsers,
             createUser: createUser,
@@ -14,6 +15,16 @@
             updateUser: updateUser
         };
         return api;
+
+        function findUserByUsername(username) {
+            var deferred = $q.defer();
+            console.log(username);
+            $http.get("/api/assignment/user/username=" + username)
+                .success(function (user) {
+                    deferred.resolve(user);
+                });
+            return deferred.promise;
+        }
 
         function findUserByCredentials(username, password) {
 

@@ -8,8 +8,9 @@ module.exports = function(mongoose) {
         "password": String,
         "firstName": String,
         "lastName": String,
-        "emails": String,
-        "phones": String
+        "email": String,
+        "phones": String,
+        "roles": [String]
     },{collection: "user"});
 
     return UserSchema;

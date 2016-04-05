@@ -53,8 +53,6 @@ module.exports = function (app, model) {
     function updateForm(req, res) {
         var formId = req.params.formId;
         var formObj = req.body;
-        console.log(formId);
-        console.log(formObj);
         model
             .updateForm(formId, formObj)
             .then(function (form) {
