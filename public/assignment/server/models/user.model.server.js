@@ -94,14 +94,13 @@ module.exports = function (mongoose, db) {
     }
 
     function updateUser(userId, userObj) {
-        console.log(userId);
         var deferred = q.defer();
         UserModel.update({_id: userId}, {$set: userObj}, function (err, user) {
             //console.log(user);
             if (err) {
                 deferred.reject(err);
             } else {
-                UserModel.findOne({_id: userId}, function (err, user) {
+                UserModel.findById(userId, function (err, user) {
                     if (err) {
                         deferred.reject(err);
                     } else {
