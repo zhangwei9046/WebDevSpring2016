@@ -56,7 +56,7 @@ module.exports = function (app, model) {
         model
             .updateForm(formId, formObj)
             .then(function (form) {
-                console.log(form);
+                //console.log(form);
                 res.json(form);
             })
     }
