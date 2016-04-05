@@ -167,7 +167,9 @@ module.exports = function (mongoose, app) {
             if (err) {
                 deferred.reject(err);
             } else {
-                form.fields[fieldId] = fieldObj;
+                form.fields.splice(fieldId, 1);
+                form.fields.push(fieldObj);
+                console.log(form);
                 form.save(function (err, form) {
                     deferred.resolve(form);
                 })
