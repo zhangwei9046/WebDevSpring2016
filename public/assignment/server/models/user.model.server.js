@@ -6,7 +6,7 @@ var q = require("q");
 module.exports = function (mongoose, db) {
     var UserSchema = require("./user.schema.server.js")(mongoose);
     var UserModel = mongoose.model("UserModel", UserSchema);
-    var users = require('./user.mock.json');
+
     var api = {
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
@@ -20,7 +20,7 @@ module.exports = function (mongoose, db) {
 
     function findUserById(userId) {
         var deferred = q.defer();
-        UserModel.findById({_id: userId}, function (err, user) {
+        UserModel.findById(id, function (err, user) {
             if (err) {
                 deferred.reject(err);
             } else {
@@ -94,22 +94,26 @@ module.exports = function (mongoose, db) {
     }
 
     function updateUser(userId, userObj) {
-        var deferred = q.defer();
-        console.log("hellohello")
-        UserModel.update({_id: userId}, {$set: userObj}, function (err, user) {
-            console.log(user);
-            if (err) {
-                deferred.reject(err);
-            } else {
-                UserModel.findOne({_id: userId}, function (err, user) {
-                    if (err) {
-                        deferred.reject(err);
-                    } else {
-                        deferred.resolve(user);
-                    }
-                });
-            }
-        });
-        return deferred.promise;
+        //var deferred = q.defer();
+        //console.log("hellohello");
+        //UserModel.update({_id: userId}, {$set: userObj}, function (err, user) {
+        //    //console.log("999");
+        //    if (err) {
+        //        console.log("356")
+        //        deferred.reject(err);
+        //    } else {
+        //        UserModel.findById(userId, function (err, user) {
+        //            if (err) {
+        //                deferred.reject(err);
+        //            } else {
+        //                deferred.resolve(user);
+        //            }
+        //        });
+        //        console.log("123");
+        //    }
+        //});
+        //return deferred.promise;
+
+        return UserModel.findOneAndUpdate({_id: userId}, userObj, {new: true});
     }
 };

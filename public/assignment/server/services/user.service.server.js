@@ -69,7 +69,9 @@ module.exports = function (app, model) {
             .then(function (user) {
                 //console.log(user);
                 res.json(user);
-            })
+            }, function(err) {
+                res.status(400).send();
+            });
     }
 
     function deleteUser(req, res) {
