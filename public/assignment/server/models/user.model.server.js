@@ -95,6 +95,7 @@ module.exports = function (mongoose, db) {
 
     function updateUser(userId, userObj) {
         var deferred = q.defer();
+        console.log("hellohello")
         UserModel.update({_id: userId}, {$set: userObj}, function (err, user) {
             console.log(user);
             if (err) {
