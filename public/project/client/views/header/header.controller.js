@@ -5,9 +5,9 @@
 (function () {
     angular
         .module("ReviewApp")
-        .config(configuration);
-    function configuration() {
-        $routeProvider
-            .when("/home")
+        .controller("HeaderController", HeaderController);
+
+    function HeaderController() {
+
     }
 })();

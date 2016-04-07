@@ -23,7 +23,9 @@
     "npm": ">= 1.0.0"
   },
   "dependencies": {
+    "bestbuy": "^1.0.0",
     "body-parser": "^1.15.0",
+    "continuation-local-storage": "^3.1.6",
     "cookie-parser": "^1.4.0",
     "express": "^3.4.8",
     "mongoose": "^4.4.10",
