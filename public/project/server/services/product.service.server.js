@@ -3,6 +3,11 @@
  */
 "use strict";
 module.exports = function(app) {
-    app.get("/api/project/product/search=:searchCriteria", searchProducts);
-    
+    app.get("/api/project/product/search=:criteria", searchProducts);
+
+    function searchProducts(req, res) {
+        var searchCriteria = req.params.criteria;
+        console.log(searchCriteria);
+
+    }
 }

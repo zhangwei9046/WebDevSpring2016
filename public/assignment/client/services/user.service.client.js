@@ -68,6 +68,7 @@
             var deferred = $q.defer();
             $http.put("/api/assignment/user/" + userId, userObj)
                 .success(function (user) {
+                    console.log(user);
                     deferred.resolve(user);
                 })
             return deferred.promise;
