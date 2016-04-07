@@ -113,7 +113,7 @@ module.exports = function (mongoose, db) {
         //    }
         //});
         //return deferred.promise;
-
+        delete userObj["_id"];
         return UserModel.findOneAndUpdate({_id: userId}, userObj, {new: true});
     }
 };
