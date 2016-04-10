@@ -54,7 +54,10 @@
             UserService.updateUser(model.user._id, newUser)
                 .then(function (response) {
                     loadAllUsers();
-                })
+                    model.username = "";
+                    model.password = "";
+                    model.rolesText = "";
+                });
         }
 
         function deleteUser(user) {
