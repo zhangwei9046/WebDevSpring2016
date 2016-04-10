@@ -94,25 +94,8 @@ module.exports = function (mongoose, db) {
     }
 
     function updateUser(userId, userObj) {
-        //var deferred = q.defer();
-        //console.log("hellohello");
-        //UserModel.update({_id: userId}, {$set: userObj}, function (err, user) {
-        //    //console.log("999");
-        //    if (err) {
-        //        console.log("356")
-        //        deferred.reject(err);
-        //    } else {
-        //        UserModel.findById(userId, function (err, user) {
-        //            if (err) {
-        //                deferred.reject(err);
-        //            } else {
-        //                deferred.resolve(user);
-        //            }
-        //        });
-        //        console.log("123");
-        //    }
-        //});
-        //return deferred.promise;
+        var deferred = q.defer();
+
         delete userObj["_id"];
         return UserModel.findOneAndUpdate({_id: userId}, userObj, {new: true});
     }
