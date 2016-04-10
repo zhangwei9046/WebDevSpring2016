@@ -18,6 +18,10 @@
 
         function update() {
             var userId = $rootScope.user._id;
+            if (!model.username || !model.password || !model.firstname || !model.lastname) {
+                alert("Please fill the fields");
+                return;
+            }
             var userObj = {
                 _id: $rootScope.user._id,
                 username: model.username,
@@ -30,8 +34,7 @@
             UserService.updateUser(userId, userObj)
                 .then(function (user) {
                     $rootScope.user = user;
-                })
-
+                });
         }
     }
 })();

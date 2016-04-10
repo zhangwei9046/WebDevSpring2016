@@ -50,7 +50,7 @@
                 username: model.username,
                 password: model.password,
                 roles: model.rolesText.split(",")
-            }
+            };
             UserService.updateUser(model.user._id, newUser)
                 .then(function (response) {
                     loadAllUsers();
