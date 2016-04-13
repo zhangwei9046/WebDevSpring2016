@@ -28,7 +28,7 @@
             if ($rootScope.user) {
                 FieldService.getFieldsForForm(formId)
                     .then(function (response) {
-                        console.log(response);
+                        //console.log(response);
                         model.fields = response;
                     });
             }

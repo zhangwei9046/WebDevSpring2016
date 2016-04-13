@@ -5,16 +5,20 @@
         <thead>
         <tr>
             <th><span class="caret"></span> Username</th>
-            <th><span class="caret"></span> Password</th>
-            <th><span class="caret"></span> Role</th>
-            <th><span class="caret"></span> Actions</th>
+            <th> Password</th>
+            <th><span class="caret"></span> First Name</th>
+            <th><span class="caret"></span> Last Name</th>
+            <th> Role</th>
+            <th> Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td><input ng-model="model.username" type="text" class="form-control" placeholder="username"></td>
-            <td><input ng-model="model.password" type="password" class="form-control" placeholder="password"></td>
-            <td><input ng-model="model.rolesText" type="text" class="form-control" placeholder="role1,role2"></td>
+            <td><input ng-model="model.username" type="text" class="form" placeholder="username"></td>
+            <td><input ng-model="model.password" type="text" class="form" placeholder="password"></td>
+            <td><input ng-model="model.firstname" type="text" class="form" placeholder="firstname"></td>
+            <td><input ng-model="model.lastname" type="text" class="form" placeholder="lastname"></td>
+            <td><input ng-model="model.rolesText" type="text" class="form" placeholder="role1,role2"></td>
             <td>
                 <button ng-click="model.addUser()" type="button" class="btn btn-primary">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -27,6 +31,8 @@
         <tr ng-repeat="user in model.users">
             <td>{{user.username}}</td>
             <td>{{user.password}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
             <td>{{user.roles}}</td>
             <td>
                 <button ng-click="model.deleteUser(user)" type="button" class="btn btn-danger">

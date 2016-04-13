@@ -1,0 +1,10 @@
+<input ng-model="model.searchCriteria" id="movieTitleTxt" class="form-control" placeholder="Iphone"/>
+<button id="searchMovieBtn" class="btn btn-primary btn-block">Search Products</button>
+<hr>
+<table class="table table-hover table-responsive">
+    <thead>
+    <tr ng-repeat="product in model.products">
+        <td><img ng-src="{{product.url}}"/>{{product.largeImage}}</td>
+    </tr>
+    </thead>
+</table>

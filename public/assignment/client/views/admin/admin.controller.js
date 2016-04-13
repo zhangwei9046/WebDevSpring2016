@@ -32,6 +32,8 @@
                 var newUser = {
                     username: model.username,
                     password: model.password,
+                    firstName: model.firstname,
+                    lastName: model.lastname,
                     roles: roles
                 };
                 UserService.createUser(newUser)
@@ -39,6 +41,8 @@
                         loadAllUsers();
                         model.username = "";
                         model.password = "";
+                        model.firstname = "";
+                        model.lastname = "";
                         model.rolesText = "";
                     });
             }
@@ -49,6 +53,8 @@
             var newUser = {
                 username: model.username,
                 password: model.password,
+                firstName: model.firstname,
+                lastName: model.lastname,
                 roles: model.rolesText.split(",")
             };
             UserService.updateUser(model.user._id, newUser)
@@ -56,6 +62,8 @@
                     loadAllUsers();
                     model.username = "";
                     model.password = "";
+                    model.firstname = "";
+                    model.lastname = "";
                     model.rolesText = "";
                 });
         }
@@ -72,6 +80,8 @@
             model.user = user;
             model.username = user.username;
             model.password = user.password;
+            model.firstname = user.firstName;
+            model.lastname = user.lastName;
             model.rolesText = user.roles;
         }
     }

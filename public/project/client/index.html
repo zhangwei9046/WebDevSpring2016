@@ -26,10 +26,7 @@
     <div ng-include="'views/header/header.view.html'"></div>
     <div class="row">
         <div ng-include="'views/sidebar/sidebar.view.html'"></div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Dashboard</h1>
-
-            <h2 class="sub-header">Section title</h2>
+        <div ng-view class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
         </div>
     </div>
@@ -48,6 +45,10 @@
 
 <!-- Controllers && ClientServices-->
 <script src="app.js"></script>
-<!--<script src="config.js"></script>-->
+<script src="config.js"></script>
+
+<script src="views/header/header.controller.js"></script>
+<script src="views/sidebar/sidebar.controller.js"></script>
+<script src="views/search/search.controller.js"></script>
 </body>
 </html>

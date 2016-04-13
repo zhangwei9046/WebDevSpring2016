@@ -4,5 +4,5 @@
 "use strict";
 (function() {
     angular
-        .module("ReviewApp", []);
+        .module("ReviewApp", ["ngRoute"]);
 })();

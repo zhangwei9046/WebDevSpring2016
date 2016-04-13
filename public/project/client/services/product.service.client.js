@@ -16,7 +16,8 @@
             var deferred = $q.defer();
             $http.get("/api/project/product/search=" + searchQuery)
                 .success(function(response) {
-                    deferred.resolve(user);
+                    console.log(response);
+                    deferred.resolve(response);
                 });
             return deferred.promise;
         }
