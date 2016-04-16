@@ -4,6 +4,6 @@
         <li ng-class="{'active': $location.url() == '/profile'}" ng-show="loggedIn()"><a href="#/profile">Profile</a>
         </li>
         <li ng-class="{'active': $location.url() == '/admin'}" ng-show="admin()"><a href="#/admin">Admin</a></li>
-        <li ng-class="{'active': $location.url() == '/forms'}" ng-show="loggedIn()"><a href="#/forms">Forms</a></li>
+        <li ng-class="{'active': $location.url() == '/forms' || $location.url() == '/fields'}" ng-show="loggedIn()"><a href="#/forms">Forms</a></li>
     </ul>
 </div>
