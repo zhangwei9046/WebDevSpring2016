@@ -74,10 +74,14 @@
         }
 
         function deleteUser(user) {
-            UserService.deleteUserById(user._id)
-                .then(function (response) {
-                    loadAllUsers();
-                });
+            if (user._id != $rootScope.user._id) {
+                UserService.deleteUserById(user._id)
+                    .then(function (response) {
+                        loadAllUsers();
+                    });
+            } else {
+                alert("You cannot delete yourself!");
+            }
         }
 
         function editUser(user) {
