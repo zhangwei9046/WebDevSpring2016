@@ -20,7 +20,7 @@ module.exports = function (mongoose, db) {
 
     function findUserById(userId) {
         var deferred = q.defer();
-        UserModel.findById(id, function (err, user) {
+        UserModel.findOne({_id: userId}, function (err, user) {
             if (err) {
                 deferred.reject(err);
             } else {
@@ -95,7 +95,6 @@ module.exports = function (mongoose, db) {
 
     function updateUser(userId, userObj) {
         var deferred = q.defer();
-
         delete userObj["_id"];
         return UserModel.findOneAndUpdate({_id: userId}, userObj, {new: true});
     }

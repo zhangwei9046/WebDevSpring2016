@@ -33,4 +33,14 @@
             <button ng-click="model.register()" type="submit" class="btn btn-primary btn-block">Register</button>
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-8">
+            <div ng-show="model.error" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                {{model.error}}
+            </div>
+        </div>
+    </div>
+
+
 </form>

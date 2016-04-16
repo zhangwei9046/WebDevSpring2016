@@ -10,23 +10,28 @@
         model.register = register;
 
         function register() {
-            if (!model.username || !model.password || !model.verifypassword || !model.email) {
-                alert("Please fill the fields");
-            } else if (model.password != model.verifypassword) {
-                alert("Password not match");
+            if (model.password != model.verifypassword || !model.password || !model.verifypassword) {
+                model.error = "Your passwords don't match";
             } else {
                 var user = {
                     username: model.username,
                     password: model.password,
                     email: model.email
                 };
-                UserService.createUser(user)
-                    .then(function (user) {
-                        console.log(user);
-                        $rootScope.user = user;
-                        $location.url('/profile');
-                    });
+                UserService.register(user)
+                    .then(function (response) {
+                            if (response.data) {
+                                $rootScope.user = response.data;
+                                $location.url("/profile");
+                            } else {
+                                model.error = "User Existed";
+                            }
+                        },
+                        function (err) {
+                            model.error = err;
+                        });
             }
+
         }
     }
 })();

@@ -7,10 +7,14 @@
     function adminController($rootScope, UserService) {
         var model = this;
 
+        model.predicate = 'username';
+        model.reverse = false;
+
         model.addUser = addUser;
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
         model.editUser = editUser;
+        model.order = order;
 
         loadAllUsers();
 
@@ -22,12 +26,12 @@
         }
 
         function addUser() {
-            var foundUsername = UserService.findUserByUsername(model.username).username;
-            if (foundUsername == model.username) {
-                alert("User existed");
-                return;
-            }
-            if (model.username && model.password && model.rolesText) {
+            if (model.username && model.password) {
+                if (!model.rolesText) {
+                    model.rolesText = "student";
+                } else {
+                    model.rolesText = "student," + model.rolesText;
+                }
                 var roles = model.rolesText.split(",");
                 var newUser = {
                     username: model.username,
@@ -50,12 +54,13 @@
         }
 
         function updateUser() {
+            var roles = (model.rolesText).split(",");
             var newUser = {
                 username: model.username,
                 password: model.password,
                 firstName: model.firstname,
                 lastName: model.lastname,
-                roles: model.rolesText.split(",")
+                roles: roles
             };
             UserService.updateUser(model.user._id, newUser)
                 .then(function (response) {
@@ -83,6 +88,11 @@
             model.firstname = user.firstName;
             model.lastname = user.lastName;
             model.rolesText = user.roles;
+        }
+
+        function order(predicate) {
+            model.reverse = (model.predicate === predicate) ? !model.reverse : false;
+            model.predicate = predicate;
         }
     }
 })();

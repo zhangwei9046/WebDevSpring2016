@@ -103,3 +103,11 @@ body {
     display: inline-block;
     border-radius: 50%;
 }
+
+.sortorder:after {
+    content: '\25bc';
+}
+
+.sortorder.reverse:after {
+    content: '\25b2';
+}

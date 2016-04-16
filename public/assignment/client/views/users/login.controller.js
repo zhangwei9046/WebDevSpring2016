@@ -10,17 +10,28 @@
         var model = this;
         model.login = login;
 
-        function login() {
-            var username = model.username;
-            var password = model.password;
-            UserService
-                .findUserByCredentials(username, password)
-                .then(function (user) {
-                    if (user != null) {
-                        $rootScope.user = user;
-                        $location.url('/profile');
-                    }
-                });
+        function login(user) {
+            if (user) {
+                UserService
+                    .login(user)
+                    .then(
+                        function (response) {
+                            $rootScope.user = response.data;
+                            $location.url('/profile');
+                        },
+                        function (err) {
+                            model.error = "Username or password not found!";
+                        }
+                    )
+            }
+            //UserService
+            //    .findUserByCredentials(username, password)
+            //    .then(function (user) {
+            //        if (user != null) {
+            //            $rootScope.user = user;
+            //            $location.url('/profile');
+            //        }
+            //    });
 
         }
     }
