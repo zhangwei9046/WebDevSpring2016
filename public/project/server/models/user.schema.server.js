@@ -1,5 +1,5 @@
 /**
- * Created by ying on 4/1/16.
+ * Created by ying on 4/19/16.
  */
 "use strict";
 module.exports = function(mongoose) {
@@ -11,7 +11,7 @@ module.exports = function(mongoose) {
         "email": String,
         "phones": String,
         "roles": [String]
-    },{collection: "user"});
+    },{collection: "project.user"});
 
     return UserSchema;
-};
+}

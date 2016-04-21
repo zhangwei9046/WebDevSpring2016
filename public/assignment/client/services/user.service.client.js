@@ -24,7 +24,6 @@
         }
 
         function register(user) {
-            //console.log(user);
             return $http.post("/api/assignment/register", user);
         }
 
@@ -52,7 +51,7 @@
             $http.get("/api/assignment/admin/user")
                 .success(function (users) {
                     deferred.resolve(users);
-                })
+                });
             return deferred.promise;
         }
 

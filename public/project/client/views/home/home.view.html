@@ -1,14 +1,40 @@
-<h1 class="page-header">Welcome !</h1>
-<p class="lead">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.
-    Duis vulputate commodo lectus, ac blandit elit tincidunt id.
-    Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.
-    Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna.
-    Aenean velit odio, elementum in tempus ut, vehicula eu diam.
-    Pellentesque rhoncus aliquam mattis.
-    Ut vulputate eros sed felis sodales nec vulputate justo hendrerit.
-    Vivamus varius pretium ligula, a aliquam odio euismod sit amet.
-    Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra.
-    Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.
-</p>
+<!--<div class="container">-->
+<!--<h1 class="page-header">Welcome !</h1>-->
+<!--<p class="lead">-->
+<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit.-->
+<!--Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.-->
+<!--Duis vulputate commodo lectus, ac blandit elit tincidunt id.-->
+<!--Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.-->
+<!--Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna.-->
+<!--Aenean velit odio, elementum in tempus ut, vehicula eu diam.-->
+<!--Pellentesque rhoncus aliquam mattis.-->
+<!--Ut vulputate eros sed felis sodales nec vulputate justo hendrerit.-->
+<!--Vivamus varius pretium ligula, a aliquam odio euismod sit amet.-->
+<!--Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra.-->
+<!--Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.-->
+<!--</p>-->
+<!--</div>-->
+
+
+<div class="container-fluid banner banner-image-home" ng-controller="HomeController">
+    <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3 hidden-md hidden-sm hidden-xs"></div>
+        <div class="col-lg-6 container-fluid">
+            <div class="row">
+                <div class="col-sm-9 col-md-9 col-lg-9">
+                    <input ng-model="model.query"
+                           class="form-control text-input center-block ng-pristine ng-untouched ng-valid"
+                           name="search" value="" placeholder="Search BestReview" type="text">
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <button ng-click="model.search(model.query)"
+                            class="btn btn-info search-button form-control" type="button"
+                            name="button">
+                        <span class="glyphicon glyphicon-search"></span> Search
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 hidden-md hidden-sm hidden-xs"></div>
+    </div>
+</div>

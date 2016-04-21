@@ -38,7 +38,7 @@ module.exports = function (mongoose, db) {
             } else {
             }
             deferred.resolve(user);
-        })
+        });
         return deferred.promise;
     }
 

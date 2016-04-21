@@ -25,11 +25,12 @@
 <div class="container-fluid">
     <div ng-include="'views/header/header.view.html'"></div>
     <div class="row">
-        <div ng-include="'views/sidebar/sidebar.view.html'"></div>
-        <div ng-view class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <!--<div ng-include="'views/sidebar/sidebar.view.html'"></div>-->
+        <div ng-view>
 
         </div>
     </div>
+    <div ng-include="'views/footer/footer.view.html'"></div>
 </div>
 
 <!-- Bootstrap core JavaScript
@@ -48,7 +49,14 @@
 <script src="config.js"></script>
 
 <script src="views/header/header.controller.js"></script>
-<script src="views/sidebar/sidebar.controller.js"></script>
+<script src="views/home/home.controller.js"></script>
+<!--<script src="views/sidebar/sidebar.controller.js"></script>-->
 <script src="views/search/search.controller.js"></script>
+<script src="views/users/signup.controller.js"></script>
+<script src="views/users/signin.controller.js"></script>
+<script src="views/users/profile.controller.js"></script>
+
+<script src="services/product.service.client.js"></script>
+<script src="services/user.service.client.js"></script>
 </body>
 </html>

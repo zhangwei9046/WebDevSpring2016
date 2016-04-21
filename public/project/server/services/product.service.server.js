@@ -3,10 +3,11 @@
  */
 "use strict";
 module.exports = function (app, bby) {
-    app.get("/api/project/product/search=:criteria", searchProducts);
+    app.get("/api/project/product/search=:query", searchProducts);
     function searchProducts(req, res) {
-        var searchCriteria = req.params.criteria;
-        bby.products('search=' + searchCriteria, {show: "name,type,salePrice,url,categoryPath,freeShippingEligible,largeImage,shortDescription"})
+        var query = req.params.query;
+        bby.products('name=' + query + '*&active=true',
+            {show: "name,type,sku,salePrice,url,categoryPath,freeShippingEligible,largeImage,shortDescription,customerReviewAverage,addToCartUrl"})
             .then(function (data) {
                 res.json(data.products);
             });

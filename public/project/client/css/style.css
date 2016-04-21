@@ -29,10 +29,24 @@ body {
  * Sidebar
  */
 
-/* Hide for mobile, show later */
-.sidebar {
-    display: none;
+/*!* Hide for mobile, show later *!*/
+/*.sidebar {*/
+    /*display: none;*/
+/*}*/
+
+.banner {
+    width: 100%;
+    height: auto;
+    min-height: 450px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
+.banner-image-home {
+    background-image: url(../images/homepage_samsung-gear-vr.jpg);
+}
+
 @media (min-width: 768px) {
     .sidebar {
         position: fixed;

@@ -10,9 +10,16 @@
     function configuration($routeProvider) {
         $routeProvider
             .when("/home", {
-            templateUrl: "views/home/home.view.html"
+                templateUrl: "views/home/home.view.html",
+                controller: "HomeController",
+                controllerAs: "model"
             })
-            .when("/search", {
+            //.when("/search", {
+            //    templateUrl: "views/search/search.view.html",
+            //    controller: "SearchController",
+            //    controllerAs: "model"
+            //})
+            .when("/search/:query", {
                 templateUrl: "views/search/search.view.html",
                 controller: "SearchController",
                 controllerAs: "model"
@@ -32,8 +39,8 @@
                 controller: "SignupController",
                 controllerAs: "model"
             })
-        .otherwise({
-            redirectTo: "/home"
-        })
+            .otherwise({
+                redirectTo: "/home"
+            })
     }
 })();

@@ -12,11 +12,10 @@
         }
         return api;
 
-        function searchProdcuts(searchQuery) {
+        function searchProducts(query) {
             var deferred = $q.defer();
-            $http.get("/api/project/product/search=" + searchQuery)
+            $http.get("/api/project/product/search=" + query)
                 .success(function(response) {
-                    console.log(response);
                     deferred.resolve(response);
                 });
             return deferred.promise;
