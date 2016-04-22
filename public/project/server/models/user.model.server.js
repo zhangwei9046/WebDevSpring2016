@@ -43,7 +43,7 @@ module.exports = function (mongoose, db) {
     }
 
     function deleteUser(userId) {
-        console.log(userId);
+        //console.log(userId);
         return UserModel.remove({_id: userId});
     }
 };

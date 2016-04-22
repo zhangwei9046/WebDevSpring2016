@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-5 col-md-5">
+        <div class="col-sm-4 col-md-3">
             <img ng-src="{{model.product.largeImage}}"/>
             <h3><a href="{{model.product.url}}">{{model.product.name}}</a></h3>
             <ul>
@@ -13,9 +13,21 @@
             </ul>
         </div>
     </div>
-    <div class="col-sm-6 col-sm-offset-5 col-md-6 col-md-offset-5">
-        <ul ng-repeat="">
-
+    <div class="col-sm-7 col-sm-offset-4 col-md-8 col-md-offset-3">
+        <ul ng-repeat="review in model.reviews">
+            <li>
+                {{review.username}}:</br>
+                {{review.content}}</hr>
+            </li>
         </ul>
+        <h4>Add a review here:</h4>
+        <div class="input-group">
+            <input ng-model="model.newReview" type="text" class="form-control" placeholder="Good!">
+      <span class="input-group-btn">
+        <button ng-click="model.addReview()" class="btn btn-default" type="button">Submit</button>
+      </span>
+        </div><!-- /input-group -->
+        <br/>
     </div>
+</div>
 </div>

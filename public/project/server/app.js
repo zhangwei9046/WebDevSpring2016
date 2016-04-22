@@ -8,4 +8,7 @@ module.exports = function (app, db, mongoose, passport, LocalStrategy) {
 
     var userModel = require("./models/user.model.server.js")(mongoose, db);
     require("./services/user.service.server.js")(app, userModel, passport, LocalStrategy);
+
+    var reviewModel = require("./models/review.model.server.js")(mongoose, db);
+    require("./services/review.service.server.js")(app, reviewModel);
 };
