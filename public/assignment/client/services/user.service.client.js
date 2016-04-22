@@ -15,7 +15,8 @@
             updateUser: updateUser,
 
             login: login,
-            register: register
+            register: register,
+            logout: logout
         };
         return api;
 
@@ -25,6 +26,10 @@
 
         function register(user) {
             return $http.post("/api/assignment/register", user);
+        }
+
+        function logout() {
+            return $http.post("/api/assignment/logout");
         }
 
         function findUserByUsername(username) {

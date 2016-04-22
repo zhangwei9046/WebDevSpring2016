@@ -2,6 +2,7 @@
 
 "use strict";
 module.exports = function (app, model, passport, LocalStrategy) {
+    var bcrypt = require("bcrypt-nodejs");
     //app.get("/api/assignment/user/username=:username&password=:password", findUserByCredentials);
     //app.get("/api/assignment/user/username=:username", findUserByUsername);
     app.get("/api/assignment/admin/user/:id", findUserById);
@@ -23,14 +24,25 @@ module.exports = function (app, model, passport, LocalStrategy) {
     var auth = authorized;
 
     function localStrategy(username, password, done) {
+
         model
-            .findUserByCredentials({username: username, password: password})
+            .findUserByUsername(username)
             .then(
                 function (user) {
                     if (!user) {
                         return done(null, false);
+                    } else if(!user.password) {
+                        user.password = bcrypt.hashSync(user.username);
+                        user.save(function(){
+                            return done(null, user);
+                        });
+                    } else if((password === user.password) || bcrypt.compareSync(password, user.password)) {
+                        return done(null, user);
+                    } else {
+
+                        return done(null, false);
                     }
-                    return done(null, user);
+
                 },
                 function (err) {
                     if (err) {
@@ -81,6 +93,7 @@ module.exports = function (app, model, passport, LocalStrategy) {
                     if (user) {
                         res.json(null);
                     } else {
+                        newUser.password = bcrypt.hashSync(newUser.password);
                         return model.createUser(newUser);
                     }
                 },
@@ -206,11 +219,13 @@ module.exports = function (app, model, passport, LocalStrategy) {
     function updateUser(req, res) {
         var userId = req.params.id;
         var userObj = req.body;
+        userObj.password = bcrypt.hashSync(userObj.password);
 
-        if (isAdmin(req.user)) {
+        if (isAdmin(req.user) || userId == req.user._id) {
             model
                 .updateUser(userId, userObj)
                 .then(function (user) {
+
                     res.json(user);
                 }, function (err) {
                     res.status(400).send();

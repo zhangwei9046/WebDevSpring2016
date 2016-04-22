@@ -3,7 +3,7 @@
  */
 "use strict";
 module.exports = function(mongoose) {
-    var UserSchema = mongoose.Schema({
+    var ProjectUserSchema = mongoose.Schema({
         "username": String,
         "password": String,
         "firstName": String,
@@ -13,5 +13,5 @@ module.exports = function(mongoose) {
         "roles": [String]
     },{collection: "project.user"});
 
-    return UserSchema;
+    return ProjectUserSchema;
 }

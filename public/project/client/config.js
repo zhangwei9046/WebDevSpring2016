@@ -27,7 +27,8 @@
             .when("/profile", {
                 templateUrl: "views/users/profile.view.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {signedin: checkSignedin}
             })
             .when("/signin", {
                 templateUrl: "views/users/signin.view.html",
@@ -39,8 +40,55 @@
                 controller: "SignupController",
                 controllerAs: "model"
             })
+            .when("/admin", {
+                templateUrl: "views/admin/admin.view.html",
+                controller: "AdminController",
+                controllerAs: "model",
+                resolve: {signedin: checkSignedin}
+            })
+            .when("/review/:sku", {
+                templateUrl: "views/search/detail.view.html",
+                controller: "DetailController",
+                controllerAs: "model",
+                resolve: {signedin: checkSignedin}
+            })
             .otherwise({
                 redirectTo: "/home"
             })
     }
+
+    var checkAdmin = function ($q, $timeout, $http, $location, $rootScope) {
+        var deferred = $q.defer();
+        $http.get('/api/project/signedin').success(function (user) {
+            // User is Authenticated
+            if (user !== '0' && user.roles.indexOf('admin') != -1) {
+                $rootScope.user = user;
+                deferred.resolve(user);
+            }
+        });
+
+        return deferred.promise;
+    };
+
+
+    var checkSignedin = function ($q, $timeout, $http, $location, $rootScope) {
+        var deferred = $q.defer();
+        $http.get('/api/project/signedin').success(function (user) {
+            console.log(user);
+            $rootScope.errorMessage = null;
+            // User is Authenticated
+            if (user !== '0') {
+                $rootScope.user = user;
+                deferred.resolve(user);
+            }
+            // User is Not Authenticated
+            else {
+                deferred.reject();
+                $location.url('/login');
+            }
+        });
+
+        return deferred.promise;
+    };
+
 })();

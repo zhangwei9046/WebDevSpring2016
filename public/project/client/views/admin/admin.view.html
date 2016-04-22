@@ -1,0 +1,48 @@
+<div class="container-fluid">
+<h1 class="page-header">Admin</h1>
+<h2>Users</h2>
+<div>
+    <table class="table table-striped table-bordered table-hover table-responsive">
+        <thead>
+        <tr>
+            <th ng-click="model.order('username')">
+                <span class="sortorder" ng-show="model.predicate=='username'" ng-class="{reverse:model.predicate=='username'? model.reverse : false}"></span>
+                Username
+            </th>
+            <th> Password</th>
+            <th> Role</th>
+            <th> Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input ng-model="model.username" type="text" class="form-control" placeholder="username"></td>
+            <td><input ng-model="model.password" type="password" class="form-control" placeholder="password"></td>
+            <td><input ng-model="model.rolesText" type="text" class="form-control" placeholder="role1,role2"></td>
+            <td>
+                <button ng-click="model.addUser()" type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
+                <button ng-click="model.updateUser()" type="button" class="btn btn-success">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </button>
+            </td>
+        </tr>
+        <tr ng-repeat="user in model.users | orderBy:model.predicate:model.reverse">
+            <td>{{user.username}}</td>
+            <td>******</td>
+            <td>{{user.roles}}</td>
+            <td>
+                <button ng-click="model.deleteUser(user)" type="button" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <button ng-click="model.editUser(user)" type="button" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                </button>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+</div>

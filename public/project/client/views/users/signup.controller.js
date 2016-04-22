@@ -17,7 +17,7 @@
                 UserService.signup(user)
                     .then(function (response) {
                             if (response.data) {
-                                console.log(response.data);
+                                //console.log(response.data);
                                 $rootScope.user = response.data;
                                 $location.url("/profile");
                             } else {

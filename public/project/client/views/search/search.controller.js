@@ -11,6 +11,7 @@
         var model = this;
         model.search = search;
         model.query = $routeParams.query;
+        //model.progress = progress;
 
         search(model.query);
 
@@ -21,5 +22,9 @@
                     model.products = response;
                 })
         }
+
+        //function progress(product) {
+        //    return "width:" + (product.customerReviewAverage * 20) + "%";
+        //}
     }
 })();

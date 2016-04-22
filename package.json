@@ -23,6 +23,8 @@
     "npm": ">= 1.0.0"
   },
   "dependencies": {
+    "bcrypt": "^0.8.6",
+    "bcrypt-nodejs": "0.0.3",
     "bestbuy": "^1.0.0",
     "body-parser": "^1.15.0",
     "continuation-local-storage": "^3.1.6",

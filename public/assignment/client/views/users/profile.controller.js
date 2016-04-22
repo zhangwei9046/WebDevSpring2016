@@ -26,7 +26,7 @@
                 lastName: model.lastname,
                 email: model.email
             };
-            console.log(userId);
+            //console.log(userId);
             UserService.updateUser(userId, userObj)
                 .then(function (user) {
                     $rootScope.user = user;

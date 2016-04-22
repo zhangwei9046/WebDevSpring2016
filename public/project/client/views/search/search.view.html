@@ -2,26 +2,27 @@
     <div class="container-fluid">
         <div class="row">
             <!--<div class="col-sm-3 col-md-2 sidebar">-->
-                <!--<ul class="nav nav-sidebar">-->
-                    <!--<li class="active"><a href="#/search">All Products</a></li>-->
-                    <!--<hr/>-->
-                    <!--<li><a href="">Appliance</a></li>-->
-                    <!--<li><a href="">TV & Home Theater</a></li>-->
-                    <!--<li><a href="">Computer & Tablets</a></li>-->
-                    <!--<li><a href="">Cell Phones</a></li>-->
-                    <!--<li><a href="">Camera & Camcorders</a></li>-->
-                    <!--<li><a href="">Audio</a></li>-->
-                    <!--<li><a href="">Car Electronics & GPS</a></li>-->
-                    <!--<li><a href="">Video Games, Movies & Music</a></li>-->
-                    <!--<li><a href="">Health, Fitness & Beauty</a></li>-->
-                    <!--<li><a href="">Connected Home & Housewares</a></li>-->
-                    <!--<li><a href="">Toys, Games & Drones</a></li>-->
-                    <!--<li><a href="">Wearable Technology</a></li>-->
-                <!--</ul>-->
+            <!--<ul class="nav nav-sidebar">-->
+            <!--<li class="active"><a href="#/search">All Products</a></li>-->
+            <!--<hr/>-->
+            <!--<li><a href="">Appliance</a></li>-->
+            <!--<li><a href="">TV & Home Theater</a></li>-->
+            <!--<li><a href="">Computer & Tablets</a></li>-->
+            <!--<li><a href="">Cell Phones</a></li>-->
+            <!--<li><a href="">Camera & Camcorders</a></li>-->
+            <!--<li><a href="">Audio</a></li>-->
+            <!--<li><a href="">Car Electronics & GPS</a></li>-->
+            <!--<li><a href="">Video Games, Movies & Music</a></li>-->
+            <!--<li><a href="">Health, Fitness & Beauty</a></li>-->
+            <!--<li><a href="">Connected Home & Housewares</a></li>-->
+            <!--<li><a href="">Toys, Games & Drones</a></li>-->
+            <!--<li><a href="">Wearable Technology</a></li>-->
+            <!--</ul>-->
             <!--</div>-->
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <input ng-model="model.query" id="titleTxt" class="form-control" placeholder="Iphone"/>
-                <button id="searchProductsBtn" class="btn btn-info btn-block" ng-click="model.search(model.query)">Search
+                <button id="searchProductsBtn" class="btn btn-info btn-block" ng-click="model.search(model.query)">
+                    Search
                     Products
                 </button>
                 <hr>
@@ -37,10 +38,16 @@
                         <td>
                             <ul>
                                 <li><h4><a href="{{product.url}}">{{product.name}}</a></h4></li>
-                                <li><b>Type:</b> {{prduct.type}} | <b>Sku:</b> {{product.sku}}</li>
+                                <li><b>Type:</b> {{product.type}} | <b>Sku:</b> {{product.sku}}</li>
                                 <li>{{product.shortDescription}}</li>
                                 <li>
-                                    <div class="fill" style="width: 97%"></div>
+                                    <div class="progress">
+                                        Rating
+                                        <div class="progress-bar progress-bar-success progress-bar-striped"
+                                             role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                             style="width: 50%">
+                                        </div>
+                                    </div>
                                 </li>
                             </ul>
                         </td>
@@ -53,6 +60,13 @@
                                             <span class="glyphicon glyphicon-shopping-cart"></span>
                                             Add To Cart
                                         </a>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="btn btn-info form-control">
+                                        <a href="#/review/{{product.sku}}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                            Add Review</a>
                                     </button>
                                 </li>
                                 <li ng-show="product.freeShippingEligible">Shipping: Eligible</li>

@@ -1,66 +1,68 @@
-<div class="col-sm-3 col-md-2 sidebar">
-    <ul class="nav nav-sidebar">
-        <li class="active"><a href="#/search">All Products</a></li>
-        <hr/>
-
-        <li><a href=""></a></li>
-
-        <!--<li><a href="">Appliance</a></li>-->
-        <!--<li><a href="">TV & Home Theater</a></li>-->
-        <!--<li><a href="">Computer & Tablets</a></li>-->
-        <!--<li><a href="">Cell Phones</a></li>-->
-        <!--<li><a href="">Camera & Camcorders</a></li>-->
-        <!--<li><a href="">Audio</a></li>-->
-        <!--<li><a href="">Car Electronics & GPS</a></li>-->
-        <!--<li><a href="">Video Games, Movies & Music</a></li>-->
-        <!--<li><a href="">Health, Fitness & Beauty</a></li>-->
-        <!--<li><a href="">Connected Home & Housewares</a></li>-->
-        <!--<li><a href="">Toys, Games & Drones</a></li>-->
-        <!--<li><a href="">Wearable Technology</a></li>-->
-    </ul>
-</div>
-<div>
-    <h1 class="page-header">Profile</h1>
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="inputUsername3" class="col-sm-2 control-label">Username</label>
-            <div class="col-sm-8">
-                <input ng-model="model.user.username" type="text" class="form-control" id="inputUsername3"
-                       placeholder="Username">
+<div class="row">
+    <div class="col-sm-3 col-md-2 navbar navbar-default">
+        <ul class="nav nav-pills nav-stacked">
+            <hr/>
+            <li class="active"><a href="">Profile</a></li>
+            <li><a href="">My Reviews</a></li>
+            <li><a href="">Friends</a></li>
+            <hr/>
+            <!--<li class="active"><a href="#/search">All Products</a></li>-->
+            <!--<li><a href="">Appliance</a></li>-->
+            <!--<li><a href="">TV & Home Theater</a></li>-->
+            <!--<li><a href="">Computer & Tablets</a></li>-->
+            <!--<li><a href="">Cell Phones</a></li>-->
+            <!--<li><a href="">Camera & Camcorders</a></li>-->
+            <!--<li><a href="">Audio</a></li>-->
+            <!--<li><a href="">Car Electronics & GPS</a></li>-->
+            <!--<li><a href="">Video Games, Movies & Music</a></li>-->
+            <!--<li><a href="">Health, Fitness & Beauty</a></li>-->
+            <!--<li><a href="">Connected Home & Housewares</a></li>-->
+            <!--<li><a href="">Toys, Games & Drones</a></li>-->
+            <!--<li><a href="">Wearable Technology</a></li>-->
+        </ul>
+    </div>
+    <div class="col-sm-6 col-sm-offset-2 col-md-9 col-md-offset-1 main">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="inputUsername3" class="col-sm-2 control-label">Username</label>
+                <div class="col-sm-8">
+                    <input ng-model="model.user.username" type="text" class="form-control" id="inputUsername3"
+                           placeholder="Username">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputPassword1" class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-8">
-                <input ng-model="model.user.password" type="password" class="form-control" id="inputPassword1"
-                       placeholder="Password">
+            <div class="form-group">
+                <label for="inputPassword1" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-8">
+                    <input ng-model="model.user.password" type="password" class="form-control" id="inputPassword1"
+                           placeholder="Password">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
-            <div class="col-sm-8">
-                <input ng-model="model.user.firstName" type="text" class="form-control" id="inputFirstName"
-                       placeholder="First Name">
+            <div class="form-group">
+                <label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
+                <div class="col-sm-8">
+                    <input ng-model="model.user.firstName" type="text" class="form-control" id="inputFirstName"
+                           placeholder="First Name">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputLastName" class="col-sm-2 control-label">Last Name</label>
-            <div class="col-sm-8">
-                <input ng-model="model.user.lastName" type="text" class="form-control" id="inputLastName"
-                       placeholder="Last Name">
+            <div class="form-group">
+                <label for="inputLastName" class="col-sm-2 control-label">Last Name</label>
+                <div class="col-sm-8">
+                    <input ng-model="model.user.lastName" type="text" class="form-control" id="inputLastName"
+                           placeholder="Last Name">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputEmail1" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-8">
-                <input ng-model="model.user.email" type="email" class="form-control" id="inputEmail1"
-                       placeholder="Email">
+            <div class="form-group">
+                <label for="inputEmail1" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-8">
+                    <input ng-model="model.user.email" type="email" class="form-control" id="inputEmail1"
+                           placeholder="Email">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-8">
-                <button ng-click="model.update()" type="submit" class="btn btn-info btn-block">Update</button>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <button ng-click="model.update()" type="submit" class="btn btn-info btn-block">Update</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

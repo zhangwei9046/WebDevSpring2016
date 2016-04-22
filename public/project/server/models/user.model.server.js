@@ -7,8 +7,9 @@ module.exports = function (mongoose, db) {
     var UserModel = mongoose.model("ProjectUserModel", ProjectUserSchema);
 
     var api = {
+        findUserById: findUserById,
         findUserByUsername: findUserByUsername,
-        findUserByCredential: findUserByCredential,
+        findUserByCredentials: findUserByCredentials,
         findAllUsers: findAllUsers,
         createUser: createUser,
         updateUser: updateUser,
@@ -16,11 +17,15 @@ module.exports = function (mongoose, db) {
     };
     return api;
 
+    function findUserById(userId) {
+        return UserModel.findOne({_id: userId});
+    }
+
     function findUserByUsername(username) {
         return UserModel.findOne({username: username});
     }
 
-    function findUserByCredential(credentials) {
+    function findUserByCredentials(credentials) {
         return UserModel.findOne({username: credentials.username, password: credentials.password});
     }
 
@@ -38,6 +43,7 @@ module.exports = function (mongoose, db) {
     }
 
     function deleteUser(userId) {
+        console.log(userId);
         return UserModel.remove({_id: userId});
     }
 };

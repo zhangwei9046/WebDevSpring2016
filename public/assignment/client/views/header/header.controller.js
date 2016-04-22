@@ -4,7 +4,7 @@
     angular
         .module("FormBuilderApp")
         .controller("HeaderController", headerController);
-    function headerController($scope, $rootScope) {
+    function headerController($scope, $rootScope, UserService) {
         $scope.loggedIn = loggedIn;
         $scope.admin = admin;
         $scope.username = username;
@@ -38,7 +38,14 @@
         }
 
         function logout() {
-            $rootScope.user = null;
+            UserService
+                .logout()
+                .then(
+                    function(response) {
+                        $rootScope.user = null;
+                        //$location.url("/home");
+                    }
+                );
             //console.log($rootScope.user);
         }
     }
