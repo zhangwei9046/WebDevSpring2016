@@ -66,6 +66,7 @@
             UserService.updateUser(model.user._id, newUser)
                 .then(function (response) {
                     loadAllUsers();
+                    model.user = null;
                     model.username = "";
                     model.password = "";
                     model.firstname = "";
