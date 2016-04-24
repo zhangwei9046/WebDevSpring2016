@@ -19,7 +19,7 @@
             ProductService.searchProducts(query)
                 .then(function(response) {
                     console.log(response);
-                    model.products = response;
+                    model.products = response.data.products;
                 })
         }
 

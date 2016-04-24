@@ -6,7 +6,7 @@
         .module("ReviewApp")
         .controller("DetailController", DetailController);
 
-    function DetailController($http, $rootScope, $routeParams, ReviewService, UserService) {
+    function DetailController($http, $rootScope, $routeParams, ProductService, ReviewService, UserService) {
         var model = this;
         model.getProduct = getProduct;
         model.getReview = getReviews;
@@ -19,13 +19,25 @@
 
         function getProduct() {
             var sku = $routeParams.sku;
-            $http.get("/api/project/product/" + sku)
-                .success(
+            ProductService
+                .getProduct(sku)
+                .then(
                     function(response) {
-                        model.product = response[0];
-                        //console.log(model.product);
+                        console.log(response);
+                        model.product = response.data.products[0];
+                    },
+                    function(err) {
+                        model.err = "Err";
                     }
-                )
+                );
+            //
+            //$http.get("/api/project/product/" + sku)
+            //    .success(
+            //        function(response) {
+            //            model.product = response[0];
+            //            //console.log(model.product);
+            //        }
+            //    )
         }
 
         function getReviews() {

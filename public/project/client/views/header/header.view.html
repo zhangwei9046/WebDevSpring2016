@@ -13,13 +13,12 @@
                 Best Review
             </a>
         </div>
-        <div class="col-lg-3">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input ng-model="query" type="text" class="form-control" placeholder="Search">
             </div>
+            <button ng-click="search(query)" type="submit" class="btn btn-default">Go!</button>
+        </form>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-show="!signedin()"><a href="#/signin">Sign In</a></li>

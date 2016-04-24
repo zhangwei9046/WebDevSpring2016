@@ -12,6 +12,11 @@
         $scope.username = username;
         $scope.isAdmin = isAdmin;
         $scope.signout = signout;
+        $scope.search = search;
+
+        function search(query) {
+            $location.url("/search/" + query);
+        }
 
         function signedin() {
             return $rootScope.user != null;
