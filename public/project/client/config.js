@@ -52,6 +52,18 @@
                 controllerAs: "model",
                 resolve: {signedin: checkSignedin}
             })
+            .when("/favorites", {
+                templateUrl: "views/users/favorites.view.html",
+                controller: "FavoritesController",
+                controllerAs: "model",
+                resolve: {signedin: checkSignedin}
+            })
+            .when("/myreviews", {
+                templateUrl: "views/users/myreviews.view.html",
+                controller: "MyreviewsController",
+                controllerAs: "model",
+                resolve: {signedin: checkSignedin}
+            })
             .otherwise({
                 redirectTo: "/home"
             })

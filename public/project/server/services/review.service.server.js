@@ -26,7 +26,6 @@ module.exports = function(app, model) {
             .findReviewBySku(sku)
             .then(
                 function(reviews) {
-                    console.log(reviews);
                     res.json(reviews);
                 },
                 function(err){
@@ -36,7 +35,7 @@ module.exports = function(app, model) {
     }
 
     function createReview(req, res) {
-        var newReview = req.body;
+        var newReview = req.params.body;
         model
             .createReview(newReview)
             .then(

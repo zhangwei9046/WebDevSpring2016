@@ -1,33 +1,48 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-4 col-md-3">
-            <img ng-src="{{model.product.largeImage}}"/>
-            <h3><a href="{{model.product.url}}">{{model.product.name}}</a></h3>
-            <ul>
-                <li><b>Type:</b> {{model.product.type}}</li>
-                <li><b>Sku:</b> {{model.product.sku}}</li>
-                <li>Description:
-                    <br/>
-                    {{model.product.longDescription}}
-                </li>
-            </ul>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <img ng-src="{{model.product.largeImage}}"/>
+                    <h3><a href="{{model.product.url}}">{{model.product.name}}</a></h3>
+                    <ul>
+                        <li><b>Type:</b> {{model.product.type}}</li>
+                        <li><b>Sku:</b> {{model.product.sku}}</li>
+                        <li>Description:
+                            <br/>
+                            {{model.product.longDescription}}
+                        </li>
+                    </ul>
+                    <button ng-click="model.like()" type="button" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-heart"></span> Like
+                    </button>
+                    <br>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-sm-7 col-sm-offset-4 col-md-8 col-md-offset-3">
-        <ul ng-repeat="review in model.reviews">
-            <li>
-                {{review.username}}:</br>
-                {{review.content}}</hr>
-            </li>
-        </ul>
-        <h4>Add a review here:</h4>
-        <div class="input-group">
-            <input ng-model="model.newReview" type="text" class="form-control" placeholder="Good!">
-      <span class="input-group-btn">
-        <button ng-click="model.addReview()" class="btn btn-default" type="button">Submit</button>
-      </span>
-        </div><!-- /input-group -->
-        <br/>
+        <div class="col-sm-8">
+            <table class="table table-bordered table-hover table-responsive">
+                <hr>
+                <tbody>
+                <tr ng-repeat="review in model.reviews" class="warning">
+                    <td>
+                        <h4>
+                            <span class="glyphicon glyphicon-globe"></span>
+                            <b>{{review.username}}:</b></h4>
+                        {{review.content}}
+                        <hr>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <h4>Add a review here:</h4>
+                <textarea ng-model="model.newReview" type="text" class="form-control" row="5"
+                          placeholder="Good!"></textarea>
+            <button ng-click="model.addReview()" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-comment"></span> Submit
+            </button>
+            <br/>
+        </div>
     </div>
 </div>
 </div>

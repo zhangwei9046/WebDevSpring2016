@@ -3,15 +3,17 @@
  */
 "use strict";
 module.exports = function(mongoose) {
-    var ProjectUserSchema = mongoose.Schema({
+    var ProductSchema = require("./product.schema.server.js")(mongoose);
+    var UserSchema = mongoose.Schema({
         "username": String,
         "password": String,
         "firstName": String,
         "lastName": String,
         "email": String,
         "phones": String,
-        "roles": [String]
+        "roles": [String],
+        "favorites": [ProductSchema]
     },{collection: "project.user"});
 
-    return ProjectUserSchema;
+    return UserSchema;
 }

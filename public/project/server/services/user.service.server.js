@@ -14,6 +14,11 @@ module.exports = function (app, model, passport, LocalStrategy) {
     app.put("/api/project/admin/user/:id", updateUser);
     app.delete("/api/project/admin/user/:id", deleteUser);
 
+    app.get("/api/project/user/:username/product/:sku", getProductFromUser);
+    app.get("/api/project/user/:username/product", getAllProductsFromUser);
+    app.post("/api/project/user/:username/product", createProductForUser);
+    app.delete("/api/project/user/:username/product/:productId", deleteProductForUser);
+
     //passport.use(new LocalStrategy(localStrategy));
     //passport.serializeUser(serializeUser);
     //passport.deserializeUser(deserializeUser);
@@ -113,7 +118,7 @@ module.exports = function (app, model, passport, LocalStrategy) {
         } else {
             next();
         }
-    };
+    }
 
 
     function findUserById(req, res) {
@@ -213,5 +218,66 @@ module.exports = function (app, model, passport, LocalStrategy) {
             return true;
         }
         return false;
+    }
+
+    function getProductFromUser(req, res) {
+        var username = req.params.username;
+        var sku = req.params.sku;
+        console.log(model.getProductFromUser(username, sku));
+        model
+            .getProductFromUser(username, sku)
+            .then(
+                function (response) {
+                    console.log(response);
+                    res.json(response);
+                },
+                function (err) {
+                    res.status(403).send();
+                }
+            )
+    }
+
+    function getAllProductsFromUser(req, res) {
+        var username = req.params.username;
+        //console.log(username);
+        model.getAllProductsFromUser(username)
+            .then(
+                function (favorites) {
+                    res.json(favorites);
+                },
+                function (err) {
+                    res.status(403).send();
+                }
+            )
+    }
+
+    function createProductForUser(req, res) {
+        var username = req.params.username;
+        var newProduct = req.body;
+        model
+            .createProductForUser(username, newProduct)
+            .then(
+                function (response) {
+                    res.json(response);
+                },
+                function (err) {
+                    res.status(403).send();
+                }
+            )
+    }
+
+    function deleteProductForUser(req, res) {
+        console.log("ddfdsafdsaf");
+        var username = req.params.username;
+        var productId = req.params.productId;
+        model.deleteProductForUser(username, productId)
+            .then(
+                function(response) {
+                    res.json(response);
+                },
+                function(err) {
+                    res.status(403).send();
+                }
+            )
     }
 };

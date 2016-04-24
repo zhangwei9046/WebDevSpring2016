@@ -13,6 +13,13 @@
                 Best Review
             </a>
         </div>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+            </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-show="!signedin()"><a href="#/signin">Sign In</a></li>
@@ -25,8 +32,8 @@
                        aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#/profile">Profile</a></li>
-                        <li><a href="#/profile">My Reviews</a></li>
-                        <li><a href="#/profile">Friends</a></li>
+                        <li><a href="#/favorites">Favorites</a></li>
+                        <li><a href="#/myreview">My Reviews</a></li>
                     </ul>
                 </li>
             </ul>

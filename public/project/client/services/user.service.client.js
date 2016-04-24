@@ -17,7 +17,12 @@
             findAllUsers: findAllUsers,
             createUser: createUser,
             updateUser: updateUser,
-            deleteUserById: deleteUserById
+            deleteUserById: deleteUserById,
+
+            getProductFromUser: getProductFromUser,
+            getAllProductsFromUser: getAllProductsFromUser,
+            addFavoritesForUser: addFavoritesForUser,
+            removeFavoritesForUser: removeFavoritesForUser
         };
         return api;
 
@@ -51,6 +56,23 @@
 
         function deleteUserById(userId) {
             return $http.delete("/api/project/admin/user/"+ userId);
+        }
+
+        function getProductFromUser(username, sku) {
+            return $http.get("/api/project/" + username + "/product/" + sku);
+        }
+
+        function getAllProductsFromUser(username) {
+            console.log(username);
+            return $http.get("/api/project/user/" + username + "/product");
+        }
+
+        function addFavoritesForUser(username, newProduct) {
+            return $http.post("/api/project/user/" + username + "/product", newProduct);
+        }
+
+        function removeFavoritesForUser(username, productId) {
+            return $http.delete("/api/project/user/" + username + "/product/" + productId);
         }
     }
 })();

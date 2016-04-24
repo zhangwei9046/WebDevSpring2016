@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-sm-3 col-md-2 navbar navbar-default">
+        <ul class="nav nav-pills nav-stacked">
+            <hr/>
+            <li><a href="#/profile">Profile</a></li>
+            <li class="active"><a href="#/favorites">Favorites</a></li>
+            <li><a href="#/friends">My Reviews</a></li>
+            <hr/>
+        </ul>
+    </div>
+    <div class="col-sm-offset-3 col-md-offset-2 main">
+        <table class="table table-bordered table-hover table-responsive">
+            <tbody>
+            <tr ng-repeat="product in model.products">
+                <td>
+                    <img ng-src="{{product.largeImage}}"/>
+                    <h4><a href="{{product.url}}">{{product.name}}</a></h4>
+                    <button type="button" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        <a href="{{product.addToCartUrl}}">Add To Cart</a>
+                    </button>
+                    <button ng-click="model.unlike($index)" type="button" class="btn btn-active">
+                        <span class="glyphicon glyphicon-heart"></span> Unlike
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <h3>{{model.err}}</h3>
+    </div>
+</div>

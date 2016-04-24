@@ -6,11 +6,13 @@
         .module("ReviewApp")
         .controller("DetailController", DetailController);
 
-    function DetailController($http, $rootScope, $routeParams, ReviewService) {
+    function DetailController($http, $rootScope, $routeParams, ReviewService, UserService) {
         var model = this;
         model.getProduct = getProduct;
         model.getReview = getReviews;
         model.addReview = addReview;
+        model.like = like;
+        //model.isliked = ;
 
         getProduct();
         getReviews();
@@ -55,6 +57,33 @@
                     },
                     function(err) {
                         model.err = "Err";
+                    }
+                )
+        }
+
+        function like() {
+            UserService
+                .addFavoritesForUser($rootScope.user.username, model.product)
+                .then(
+                    function(response) {
+                        console.log(response);
+
+                    },
+                    function(err) {
+                        model.err = "Err";
+                    }
+                )
+        }
+
+        function isliked() {
+            var username = $rootScope.user.username;
+            UserService.getProductFromUser(username, $routeParams.sku)
+                .then(
+                    function(response) {
+                        model.test = response;
+                    },
+                    function(err) {
+                        model.err ="Err";
                     }
                 )
         }
