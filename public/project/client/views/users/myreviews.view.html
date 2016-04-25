@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-sm-3 col-md-2 navbar navbar-default">
+        <ul class="nav nav-pills nav-stacked">
+            <hr/>
+            <li><a href="#/profile">Profile</a></li>
+            <li><a href="#/favorites">Favorites</a></li>
+            <li class="active"><a href="#/myreviews">My Reviews</a></li>
+            <hr/>
+        </ul>
+    </div>
+    <div class="col-sm-offset-3 col-md-offset-2 main">
+        <table class="table table-bordered table-hover table-responsive">
+            <tbody>
+            <tr ng-repeat="review in model.reviews">
+                <td>
+                    <img ng-src="{{review.product.largeImage}}"/>
+                    <h4><a href="{{review.product.url}}">{{review.product.name}}</a></h4>
+                    <b>Sku:</b> {{review.product.sku}}
+                    <hr>
+                    <h4>Me: </h4>{{review.content}}
+                    <hr>
+                    <button ng-click="model.deleteReview(review._id)" type="button" class="btn btn-active">
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <h3>{{model.err}}</h3>
+    </div>
+</div>

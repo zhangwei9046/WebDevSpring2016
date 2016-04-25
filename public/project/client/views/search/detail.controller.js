@@ -55,8 +55,9 @@
 
         function addReview() {
             var newReview = {
-                username: $rootScope.user.username,
                 sku: $routeParams.sku,
+                product: model.product,
+                username: $rootScope.user.username,
                 content: model.newReview
             };
             ReviewService

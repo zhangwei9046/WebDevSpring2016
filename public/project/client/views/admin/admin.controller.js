@@ -58,7 +58,7 @@
         }
 
         function updateUser() {
-            var roles = (model.rolesText).split(",");
+            var roles = (model.rolesText + "").split(",");
             var newUser = {
                 username: model.username,
                 password: model.password,

@@ -8,14 +8,14 @@
 
     function ReviewService($http) {
         var api= {
-            getReviewByUsername: getReviewByUsername,
+            getReviewsByUsername: getReviewsByUsername,
             getReviewBySku: getReviewBySku,
             createReview: createReview,
             deleteReview: deleteReview
-        }
+        };
         return api;
 
-        function getReviewByUsername(username) {
+        function getReviewsByUsername(username) {
             return $http.get("/api/project/user/" + username + "/review");
         }
 

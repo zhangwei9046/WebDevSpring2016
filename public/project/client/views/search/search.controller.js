@@ -19,7 +19,11 @@
             ProductService.searchProducts(query)
                 .then(function(response) {
                     console.log(response);
-                    model.products = response.data.products;
+                    if (!response.data.products || response.data.products.length == 0) {
+                        model.err = "No results! Try another keyword!";
+                    } else {
+                        model.products = response.data.products;
+                    }
                 })
         }
 

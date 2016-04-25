@@ -19,7 +19,6 @@
                 .then(
                     function(response) {
                         if (!response.data || response.data.length == 0) {
-                            console.log("sss");
                             model.err = "You haven't added any favorites yet! Go add some!";
                         } else {
 

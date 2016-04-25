@@ -7,7 +7,7 @@ module.exports = function (mongoose, db) {
 
     var api = {
         findReviewById: findReviewById,
-        findReviewByUsername: findReviewByUsername,
+        findReviewsByUsername: findReviewsByUsername,
         findReviewBySku: findReviewBySku,
         createReview: createReview,
         deleteReview: deleteReview
@@ -18,8 +18,8 @@ module.exports = function (mongoose, db) {
         return ReviewModel.findOne({_id: reviewId});
     }
 
-    function findReviewByUsername(username) {
-        return ReviewModel.findOne({username: username});
+    function findReviewsByUsername(username) {
+        return ReviewModel.find({username: username});
     }
 
     function findReviewBySku(sku) {

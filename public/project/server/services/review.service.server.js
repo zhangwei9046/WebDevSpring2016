@@ -2,14 +2,14 @@
  * Created by ying on 4/22/16.
  */
 module.exports = function(app, model) {
-    app.get("/api/project/user/:username/review", findReviewByUsername);
+    app.get("/api/project/user/:username/review", findReviewsByUsername);
     app.get("/api/project/review/sku=:sku", findReviewBySku);
     app.post("/api/project/review", createReview);
     app.delete("/api/project/review/:id", deleteReview);
 
-    function findReviewByUsername(req, res) {
+    function findReviewsByUsername(req, res) {
         var username = req.params.username;
-        model.findReviewByUsername(username)
+        model.findReviewsByUsername(username)
             .then(
                 function(reviews) {
                     res.json(reviews);
@@ -35,7 +35,8 @@ module.exports = function(app, model) {
     }
 
     function createReview(req, res) {
-        var newReview = req.params.body;
+        var newReview = req.body;
+        //console.log(newReview);
         model
             .createReview(newReview)
             .then(

@@ -65,7 +65,7 @@
                 resolve: {signedin: checkSignedin}
             })
             .otherwise({
-                redirectTo: "/home"
+                redirectTo: "/signin"
             })
     }
 
