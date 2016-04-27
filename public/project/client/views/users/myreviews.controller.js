@@ -34,6 +34,7 @@
                 .deleteReview(reviewId)
                 .then(
                     function (response) {
+                        model.reviews = null;
                         getReviews();
                     },
                     function (err) {

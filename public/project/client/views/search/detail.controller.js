@@ -64,7 +64,7 @@
                 .createReview(newReview)
                 .then(
                     function(response) {
-                        //console.log(response);
+                        model.newReview = "";
                         getReviews();
                         console.log(model.reviews);
                     },

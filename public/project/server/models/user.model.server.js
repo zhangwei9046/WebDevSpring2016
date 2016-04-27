@@ -130,7 +130,12 @@ module.exports = function (mongoose, db) {
             .then(
                 function (user) {
                     user.favorites.splice(productId, 1);
-                    return user.save();
+
+                    user.save(
+                        function(err, response) {
+                            deferred.resolve(response);
+                        }
+                    )
                 }
             );
         return deferred.promise;

@@ -33,17 +33,17 @@
         }
 
         function unlike(favoritesId) {
-            console.log(favoritesId);
             UserService
                 .removeFavoritesForUser($rootScope.user.username, favoritesId)
                 .then(
                     function(response) {
+                        model.products = null;
                         getFavorites();
                     },
                     function(err) {
                         model.err = "Err";
                     }
-                )
+                );
         }
     }
 })();

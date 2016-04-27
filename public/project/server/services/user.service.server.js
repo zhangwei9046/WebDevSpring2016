@@ -264,7 +264,6 @@ module.exports = function (app, model, passport, LocalStrategy) {
     }
 
     function deleteProductForUser(req, res) {
-        console.log("ddfdsafdsaf");
         var username = req.params.username;
         var productId = req.params.productId;
         model.deleteProductForUser(username, productId)
