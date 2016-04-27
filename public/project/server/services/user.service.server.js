@@ -19,46 +19,46 @@ module.exports = function (app, model, passport, LocalStrategy) {
     app.post("/api/project/user/:username/product", createProductForUser);
     app.delete("/api/project/user/:username/product/:productId", deleteProductForUser);
 
-    //passport.use(new LocalStrategy(localStrategy));
-    //passport.serializeUser(serializeUser);
-    //passport.deserializeUser(deserializeUser);
-    //var auth = authorized;
-    //
-    //function localStrategy(username, password, done) {
-    //    model
-    //        .findUserByCredentials({username: username, password: password})
-    //        .then(
-    //            function (user) {
-    //                console.log(user);
-    //                if (!user) {
-    //                    return done(null, false);
-    //                }
-    //                return done(null, user);
-    //            },
-    //            function (err) {
-    //                if (err) {
-    //                    return done(err);
-    //                }
-    //            }
-    //        );
-    //}
-    //
-    //function serializeUser(user, done) {
-    //    done(null, user);
-    //}
-    //
-    //function deserializeUser(user, done) {
-    //    model
-    //        .findUserById(user._id)
-    //        .then(
-    //            function (user) {
-    //                done(null, user);
-    //            },
-    //            function (err) {
-    //                done(err, null);
-    //            }
-    //        );
-    //}
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+    var auth = authorized;
+
+    function localStrategy(username, password, done) {
+        model
+            .findUserByCredentials({username: username, password: password})
+            .then(
+                function (user) {
+                    console.log(user);
+                    if (!user) {
+                        return done(null, false);
+                    }
+                    return done(null, user);
+                },
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                }
+            );
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        model
+            .findUserById(user._id)
+            .then(
+                function (user) {
+                    done(null, user);
+                },
+                function (err) {
+                    done(err, null);
+                }
+            );
+    }
 
     function signup(req, res) {
         var newUser = req.body;

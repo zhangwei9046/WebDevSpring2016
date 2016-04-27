@@ -18,56 +18,56 @@ module.exports = function (app, model, passport, LocalStrategy) {
     app.post("/api/assignment/register", register);
 
 
-    passport.use(new LocalStrategy(localStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
-    var auth = authorized;
-
-    function localStrategy(username, password, done) {
-
-        model
-            .findUserByUsername(username)
-            .then(
-                function (user) {
-                    if (!user) {
-                        return done(null, false);
-                    } else if(!user.password) {
-                        user.password = bcrypt.hashSync(user.username);
-                        user.save(function(){
-                            return done(null, user);
-                        });
-                    } else if((password === user.password) || bcrypt.compareSync(password, user.password)) {
-                        return done(null, user);
-                    } else {
-
-                        return done(null, false);
-                    }
-
-                },
-                function (err) {
-                    if (err) {
-                        return done(err);
-                    }
-                }
-            );
-    }
-
-    function serializeUser(user, done) {
-        done(null, user);
-    }
-
-    function deserializeUser(user, done) {
-        model
-            .findUserById(user._id)
-            .then(
-                function (user) {
-                    done(null, user);
-                },
-                function (err) {
-                    done(err, null);
-                }
-            );
-    }
+    //passport.use(new LocalStrategy(localStrategy));
+    //passport.serializeUser(serializeUser);
+    //passport.deserializeUser(deserializeUser);
+    //var auth = authorized;
+    //
+    //function localStrategy(username, password, done) {
+    //
+    //    model
+    //        .findUserByUsername(username)
+    //        .then(
+    //            function (user) {
+    //                if (!user) {
+    //                    return done(null, false);
+    //                } else if(!user.password) {
+    //                    user.password = bcrypt.hashSync(user.username);
+    //                    user.save(function(){
+    //                        return done(null, user);
+    //                    });
+    //                } else if((password === user.password) || bcrypt.compareSync(password, user.password)) {
+    //                    return done(null, user);
+    //                } else {
+    //
+    //                    return done(null, false);
+    //                }
+    //
+    //            },
+    //            function (err) {
+    //                if (err) {
+    //                    return done(err);
+    //                }
+    //            }
+    //        );
+    //}
+    //
+    //function serializeUser(user, done) {
+    //    done(null, user);
+    //}
+    //
+    //function deserializeUser(user, done) {
+    //    model
+    //        .findUserById(user._id)
+    //        .then(
+    //            function (user) {
+    //                done(null, user);
+    //            },
+    //            function (err) {
+    //                done(err, null);
+    //            }
+    //        );
+    //}
 
     function login(req, res) {
         var user = req.user;
