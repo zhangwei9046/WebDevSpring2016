@@ -44,7 +44,7 @@
             if (!signedin()) {
                 return false;
             }
-            for (var i = 0; i < $rootScope.user.roles.length; i++) {
+            for (var i = 0; $rootScope.user.roles && i < $rootScope.user.roles.length; i++) {
                 if ($rootScope.user.roles[i] == "admin") {
                     return true;
                 }
